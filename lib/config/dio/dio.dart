@@ -1,4 +1,4 @@
-import 'package:exam_app_team_1/core/constant/api_endpoints.dart';
+import 'package:exam_app_team_1/core/constant/app_endpoints.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
