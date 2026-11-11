@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:exam_app_team_1/core/constant/app_endpoints.dart';
+import 'package:exam_app_team_1/features/auth/data/models/login_request.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../data/models/signup_request.dart';
@@ -14,7 +15,7 @@ abstract class AuthApiClient{
   factory AuthApiClient(Dio dio,{String? baseUrl}) = _AuthApiClient;
 
   @POST(AppEndpoints.login)
-  Future<AuthResponse> login(@Body() loginRequest request);
+  Future<AuthResponse> login(@Body() LoginRequest request);
 
   @POST(AppEndpoints.signup)
   Future<AuthResponse> signup(@Body() SignupRequest request);

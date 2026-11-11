@@ -6,7 +6,7 @@ import 'package:exam_app_team_1/features/auth/data/models/signup_request.dart';
 @LazySingleton(as: AuthDataSource)
 class AuthDataSourceImp implements AuthDataSource{
 
-  AuthApiClient authApiClient;
+  final AuthApiClient authApiClient;
   AuthDataSourceImp(this.authApiClient);
 
   @override
