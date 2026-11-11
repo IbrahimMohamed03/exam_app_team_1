@@ -1,7 +1,8 @@
 
 
 import 'package:dio/dio.dart';
-import 'package:exam_app_team_1/core/constant/api_constant.dart';
+
+import '../../core/constants/api_constant.dart';
 
 sealed class BaseResponse<T>{}
 
