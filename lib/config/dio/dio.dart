@@ -1,6 +1,7 @@
-import 'package:exam_app_team_1/core/constant/app_endpoints.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../core/constants/app_endpoints.dart';
 
 @module
 abstract class DioModule{
@@ -10,6 +11,7 @@ abstract class DioModule{
         baseUrl: AppEndpoints.baseUrl,
         connectTimeout: const Duration(seconds: 10),
         receiveTimeout: const Duration(seconds: 10),
+        headers: {'Content-Type': 'application/json'},
       ),
   );
 }

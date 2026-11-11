@@ -1,11 +1,12 @@
 import 'package:dio/dio.dart';
-import 'package:exam_app_team_1/core/constant/app_endpoints.dart';
+import 'package:exam_app_team_1/core/constants/app_endpoints.dart';
 import 'package:exam_app_team_1/features/auth/data/models/login_request.dart';
 import 'package:injectable/injectable.dart';
-
+import 'package:retrofit/retrofit.dart';
+import '../../data/models/auth_response.dart';
 import '../../data/models/signup_request.dart';
 
-part 'home_api_client.g.dart';
+part 'auth_api_client.g.dart';
 
 @RestApi()
 @LazySingleton()

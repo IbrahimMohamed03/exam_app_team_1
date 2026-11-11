@@ -2,7 +2,7 @@
 class AppEndpoints {
   AppEndpoints._();
 
-  static const String baseUrl = "https://exam.elevateegy.com/";
+  static const String baseUrl = 'https://exam.elevateegy.com/api/v1/';
 
   // Authentication
   static const String signup = "api/v1/auth/signup";
