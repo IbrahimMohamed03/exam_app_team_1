@@ -18,6 +18,11 @@ import '../../features/auth/api/api_clients/auth_api_client.dart' as _i775;
 import '../../features/auth/data/datasources/auth_data_source.dart' as _i970;
 import '../../features/auth/data/datasources/auth_data_source_imp.dart'
     as _i196;
+import '../../features/auth/data/repositories/auth_repository_impl.dart'
+    as _i153;
+import '../../features/auth/domain/repositories/auth_repository.dart' as _i787;
+import '../../features/auth/domain/usecases/login_usecase.dart' as _i188;
+import '../../features/auth/domain/usecases/register_usecase.dart' as _i941;
 import '../dio/dio.dart' as _i889;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -34,6 +39,15 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i970.AuthDataSource>(
       () => _i196.AuthDataSourceImp(gh<_i775.AuthApiClient>()),
+    );
+    gh.lazySingleton<_i787.AuthRepository>(
+      () => _i153.AuthRepositoryImpl(gh<_i970.AuthDataSource>()),
+    );
+    gh.lazySingleton<_i188.LoginUsecase>(
+      () => _i188.LoginUsecase(gh<_i787.AuthRepository>()),
+    );
+    gh.lazySingleton<_i941.RegisterUsecase>(
+      () => _i941.RegisterUsecase(gh<_i787.AuthRepository>()),
     );
     return this;
   }
