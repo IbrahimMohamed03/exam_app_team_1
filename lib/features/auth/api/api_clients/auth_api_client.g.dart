@@ -49,7 +49,7 @@ class _AuthApiClient implements AuthApiClient {
   }
 
   @override
-  Future<AuthResponse> signup(SignupRequest request) async {
+  Future<AuthResponse> register(RegisterRequest request) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};

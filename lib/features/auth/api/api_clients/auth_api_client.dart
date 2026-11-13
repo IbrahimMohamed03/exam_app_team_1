@@ -4,7 +4,7 @@ import 'package:exam_app_team_1/features/auth/data/models/login_request.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 import '../../data/models/auth_response.dart';
-import '../../data/models/signup_request.dart';
+import '../../data/models/register_request.dart';
 
 part 'auth_api_client.g.dart';
 
@@ -18,8 +18,8 @@ abstract class AuthApiClient{
   @POST(AppEndpoints.login)
   Future<AuthResponse> login(@Body() LoginRequest request);
 
-  @POST(AppEndpoints.signup)
-  Future<AuthResponse> signup(@Body() SignupRequest request);
+  @POST(AppEndpoints.register)
+  Future<AuthResponse> register(@Body() RegisterRequest request);
 
   @GET(AppEndpoints.logout)
   Future<AuthResponse> logout();
