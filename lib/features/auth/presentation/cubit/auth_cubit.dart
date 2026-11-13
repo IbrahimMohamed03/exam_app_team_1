@@ -1,5 +1,7 @@
 
 
+import 'dart:math';
+
 import 'package:bloc/bloc.dart';
 import 'package:exam_app_team_1/config/base_response/base_rsponse.dart';
 import 'package:exam_app_team_1/features/auth/data/models/login_request.dart';
@@ -65,10 +67,12 @@ class AuthCubit extends Cubit<AuthState>{
         emit(state.copyWith(userState: state.userState?.copyWith(
             data: response.data
         )));
+        print(response.data);
       case ErrorBaseResponse<UserEntity>():
         emit(state.copyWith(userState: state.userState?.copyWith(
             errMsg: response.errorMsg,isLoading: false
         )));
+        print(response.errorMsg);
     }
   }
 }
