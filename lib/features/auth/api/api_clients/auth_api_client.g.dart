@@ -31,7 +31,7 @@ class _AuthApiClient implements AuthApiClient {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'api/v1/auth/signin',
+            'auth/signin',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -59,7 +59,7 @@ class _AuthApiClient implements AuthApiClient {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'api/v1/auth/signup',
+            'auth/signup',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -86,7 +86,7 @@ class _AuthApiClient implements AuthApiClient {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'api/v1/auth/logout',
+            'auth/logout',
             queryParameters: queryParameters,
             data: _data,
           )

@@ -55,6 +55,8 @@ class AppTheme{
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
+            backgroundColor: AppColors.primary,
+            foregroundColor: Colors.white,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(100)
             ),
@@ -62,6 +64,8 @@ class AppTheme{
         ),
 
         inputDecorationTheme: InputDecorationTheme(
+          labelStyle: TextStyle(fontSize: 12,color: AppColors.textPrimary),
+          floatingLabelBehavior: FloatingLabelBehavior.always,
           filled: false,
           contentPadding: EdgeInsets.symmetric(
             horizontal: 12,

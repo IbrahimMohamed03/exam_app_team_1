@@ -35,7 +35,7 @@ extension GetItInjectableX on _i174.GetIt {
     final dioModule = _$DioModule();
     gh.singleton<_i361.Dio>(() => dioModule.dio);
     gh.lazySingleton<_i775.AuthApiClient>(
-      () => _i775.AuthApiClient(gh<_i361.Dio>(), baseUrl: gh<String>()),
+      () => _i775.AuthApiClient(gh<_i361.Dio>()),
     );
     gh.lazySingleton<_i970.AuthDataSource>(
       () => _i36.AuthDataSourceImp(gh<_i775.AuthApiClient>()),
