@@ -19,6 +19,9 @@ class AppEndpoints {
   static const String verifyResetCode = 'auth/verifyResetCode';
   static const String resetPassword = 'auth/resetPassword';
 
+  // Subjects
+  static const String getAllSubjects = 'subjects';
+
   // Exams
   static const String addExam = 'exams';
   static const String getExams = 'exams';
