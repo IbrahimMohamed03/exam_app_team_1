@@ -2,23 +2,24 @@
 class AppEndpoints {
   AppEndpoints._();
 
-  static const String baseUrl = 'https://exam.elevateegy.com/api/v1/';
+  static const String baseUrl =
+      'https://exam.elevateegy.com/api/v1/';
 
   // Authentication
-  static const String signup = "api/v1/auth/signup";
-  static const String login = "api/v1/auth/signin";
-  static const String changePassword = "api/v1/auth/changePassword";
-  static const String deleteAccount = "api/v1/auth/deleteMe";
-  static const String editAccount = "api/v1/auth/editProfile";
-  static const String logout = "api/v1/auth/logout";
-  static const String getLoggedUser = "api/v1/auth/profileData";
+  static const String register = 'auth/signup';
+  static const String login = 'auth/signin';
+  static const String changePassword = 'auth/changePassword';
+  static const String deleteAccount = 'auth/deleteMe';
+  static const String editAccount = 'auth/editProfile';
+  static const String logout = 'auth/logout';
+  static const String getLoggedUser = 'auth/profileData';
 
   // Password recovery
-  static const String forgotPassword = "api/v1/auth/forgotPassword";
-  static const String verifyResetCode = "api/v1/auth/verifyResetCode";
-  static const String resetPassword = "api/v1/auth/resetPassword";
+  static const String forgotPassword = 'auth/forgotPassword';
+  static const String verifyResetCode = 'auth/verifyResetCode';
+  static const String resetPassword = 'auth/resetPassword';
 
   // Exams
-  static const String addExam = "api/v1/exams";
-  static const String getExams = "api/v1/exams";
+  static const String addExam = 'exams';
+  static const String getExams = 'exams';
 }
