@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:exam_app_team_1/config/dio/auth_interceptor.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
@@ -16,6 +17,8 @@ abstract class DioModule{
 
       ),
     );
+
+    dio.interceptors.add(AuthInterceptor());
 
     dio.interceptors.add(
       PrettyDioLogger(
