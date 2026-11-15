@@ -8,3 +8,4 @@ abstract class AuthDataSource{
   Future<BaseResponse<AuthResponse>>register (RegisterRequest request);
   Future<void> logout();
 }
+
