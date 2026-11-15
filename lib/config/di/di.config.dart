@@ -23,6 +23,17 @@ import '../../features/auth/domain/repositories/auth_repository.dart' as _i787;
 import '../../features/auth/domain/usecases/login_usecase.dart' as _i188;
 import '../../features/auth/domain/usecases/register_usecase.dart' as _i941;
 import '../../features/auth/presentation/cubit/auth_cubit.dart' as _i117;
+import '../../features/home/api/api_client/home_api_client.dart' as _i592;
+import '../../features/home/api/datasources/home_data_source_impl.dart'
+    as _i197;
+import '../../features/home/data/datasources/remote/home_data_source.dart'
+    as _i545;
+import '../../features/home/data/repositories/home_repository_impl.dart'
+    as _i76;
+import '../../features/home/domain/repositories/home_repository.dart' as _i0;
+import '../../features/home/domain/usecases/get_one_subject_usecase.dart'
+    as _i703;
+import '../../features/home/domain/usecases/get_subjects_usecase.dart' as _i895;
 import '../dio/dio.dart' as _i889;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -37,8 +48,23 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i775.AuthApiClient>(
       () => _i775.AuthApiClient(gh<_i361.Dio>()),
     );
+    gh.lazySingleton<_i592.HomeApiClient>(
+      () => _i592.HomeApiClient(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i545.HomeDataSource>(
+      () => _i197.HomeDataSourceImp(gh<_i592.HomeApiClient>()),
+    );
     gh.lazySingleton<_i970.AuthDataSource>(
       () => _i36.AuthDataSourceImp(gh<_i775.AuthApiClient>()),
+    );
+    gh.lazySingleton<_i0.HomeRepository>(
+      () => _i76.HomeRepositoryImpl(gh<_i545.HomeDataSource>()),
+    );
+    gh.lazySingleton<_i703.GetOneSubjectUsecase>(
+      () => _i703.GetOneSubjectUsecase(gh<_i0.HomeRepository>()),
+    );
+    gh.lazySingleton<_i895.GetSubjectsUsecase>(
+      () => _i895.GetSubjectsUsecase(gh<_i0.HomeRepository>()),
     );
     gh.lazySingleton<_i787.AuthRepository>(
       () => _i153.AuthRepositoryImpl(gh<_i970.AuthDataSource>()),

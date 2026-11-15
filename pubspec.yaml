@@ -46,7 +46,7 @@ dev_dependencies:
   retrofit_generator: ^10.0.1
   json_serializable: ^6.10.0
   injectable_generator: ^2.6.2
-  freezed: ^3.0.0
+  freezed: 3.2.5
 
 flutter:
   uses-material-design: true
