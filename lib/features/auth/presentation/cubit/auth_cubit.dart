@@ -14,18 +14,11 @@ import 'package:injectable/injectable.dart';
 
 @Injectable()
 class AuthCubit extends Cubit<AuthState>{
-  LoginUsecase loginUsecase;
-  RegisterUsecase registerUsecase;
+  LoginUsecase _loginUsecase;
+  RegisterUsecase _registerUsecase;
 
 
-  TextEditingController registerEmailController = TextEditingController();
-  TextEditingController registerPasswordController = TextEditingController();
-  TextEditingController registerUsernameController = TextEditingController();
-  TextEditingController registerFirstNameController = TextEditingController();
-  TextEditingController registerLastNameController = TextEditingController();
-  TextEditingController registerPhoneController = TextEditingController();
-
-  AuthCubit(this.loginUsecase,this.registerUsecase):super(AuthState());
+  AuthCubit(this._loginUsecase,this._registerUsecase):super(AuthState());
 
   void onEvent(AuthEvents event)async{
     switch(event){
@@ -33,31 +26,13 @@ class AuthCubit extends Cubit<AuthState>{
       case LoginEvent(:final email,:final password):
         _login(email, password);
         return;
-      case RegisterEvent(
-          :final email,
-          :final password,
-          :final username,
-          :final phone,
-          :final firstName,
-          :final lastName,
-          :final rePassword,
+      case RegisterEvent(:final email, :final password, :final username, :final phone, :final firstName, :final lastName, :final rePassword,
       ):
-        await _register(
-        email,
-        password,
-        username,
-        phone,
-        firstName,
-        lastName,
-        rePassword,
-        );
+        await _register(email, password, username, phone, firstName, lastName, rePassword,);
         return;
       case LogoutEvent():
         // TODO: Handle this case.
     }
-  }
-  void getData()async{
-
   }
 
   Future<void> _login(String email, String password)async{
@@ -68,7 +43,7 @@ class AuthCubit extends Cubit<AuthState>{
       isLoading: true,errMsg: null
     )));
 
-    BaseResponse<UserEntity>? response = await loginUsecase(request);
+    BaseResponse<UserEntity>? response = await _loginUsecase(request);
     switch(response){
 
       case SuccessBaseResponse<UserEntity>():
@@ -92,7 +67,7 @@ class AuthCubit extends Cubit<AuthState>{
         isLoading: true,errMsg: null
     )));
 
-    BaseResponse<UserEntity>? response = await registerUsecase(request);
+    BaseResponse<UserEntity>? response = await _registerUsecase(request);
     switch(response){
 
       case SuccessBaseResponse<UserEntity>():

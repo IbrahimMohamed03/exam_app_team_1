@@ -7,7 +7,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'subject_response.freezed.dart';
 part 'subject_response.g.dart';
 
-@freezed
+@Freezed(makeCollectionsUnmodifiable: false)
 abstract class SubjectResponse with _$SubjectResponse {
   const factory SubjectResponse({
     @JsonKey(name: "message")

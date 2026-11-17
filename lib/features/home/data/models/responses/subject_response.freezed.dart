@@ -220,18 +220,12 @@ return $default(_that.message,_that.metadata,_that.subjects);case _:
 @JsonSerializable()
 
 class _SubjectResponse implements SubjectResponse {
-  const _SubjectResponse({@JsonKey(name: "message") required this.message, @JsonKey(name: "metadata") required this.metadata, @JsonKey(name: "subjects") required final  List<SubjectModel> subjects}): _subjects = subjects;
+  const _SubjectResponse({@JsonKey(name: "message") required this.message, @JsonKey(name: "metadata") required this.metadata, @JsonKey(name: "subjects") required this.subjects});
   factory _SubjectResponse.fromJson(Map<String, dynamic> json) => _$SubjectResponseFromJson(json);
 
 @override@JsonKey(name: "message") final  String message;
 @override@JsonKey(name: "metadata") final  MetadataModel metadata;
- final  List<SubjectModel> _subjects;
-@override@JsonKey(name: "subjects") List<SubjectModel> get subjects {
-  if (_subjects is EqualUnmodifiableListView) return _subjects;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_subjects);
-}
-
+@override@JsonKey(name: "subjects") final  List<SubjectModel> subjects;
 
 /// Create a copy of SubjectResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -246,12 +240,12 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SubjectResponse&&(identical(other.message, message) || other.message == message)&&(identical(other.metadata, metadata) || other.metadata == metadata)&&const DeepCollectionEquality().equals(other._subjects, _subjects));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SubjectResponse&&(identical(other.message, message) || other.message == message)&&(identical(other.metadata, metadata) || other.metadata == metadata)&&const DeepCollectionEquality().equals(other.subjects, subjects));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,message,metadata,const DeepCollectionEquality().hash(_subjects));
+int get hashCode => Object.hash(runtimeType,message,metadata,const DeepCollectionEquality().hash(subjects));
 
 @override
 String toString() {
@@ -287,7 +281,7 @@ class __$SubjectResponseCopyWithImpl<$Res>
   return _then(_SubjectResponse(
 message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
 as String,metadata: null == metadata ? _self.metadata : metadata // ignore: cast_nullable_to_non_nullable
-as MetadataModel,subjects: null == subjects ? _self._subjects : subjects // ignore: cast_nullable_to_non_nullable
+as MetadataModel,subjects: null == subjects ? _self.subjects : subjects // ignore: cast_nullable_to_non_nullable
 as List<SubjectModel>,
   ));
 }

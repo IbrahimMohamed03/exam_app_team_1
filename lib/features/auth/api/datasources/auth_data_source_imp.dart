@@ -3,7 +3,7 @@ import 'package:exam_app_team_1/features/auth/api/api_clients/auth_api_client.da
 import 'package:exam_app_team_1/features/auth/data/models/login_request.dart';
 import 'package:exam_app_team_1/features/auth/data/models/register_request.dart';
 import 'package:injectable/injectable.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../data/models/auth_response.dart';
 import '../../data/datasources/auth_data_source.dart';
 
@@ -17,6 +17,8 @@ class AuthDataSourceImp implements AuthDataSource{
   Future<BaseResponse<AuthResponse>> login(LoginRequest request)async{
    try{
      final response = await authApiClient.login(request);
+     final prefs = await SharedPreferences.getInstance();
+     await prefs.setString('token', response.token!);
      return SuccessBaseResponse(response);
    }catch(e){
      return ErrorBaseResponse(errorObj: e);
