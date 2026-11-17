@@ -4,7 +4,11 @@ import 'package:exam_app_team_1/features/auth/data/models/login_request.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 import '../../data/models/auth_response.dart';
+import '../../data/models/forget_password_response.dart';
+import '../../data/models/forgot_password_request.dart';
 import '../../data/models/register_request.dart';
+import '../../data/models/reset_password_request.dart';
+import '../../data/models/verify_reset_code_request.dart';
 
 part 'auth_api_client.g.dart';
 
@@ -23,4 +27,16 @@ abstract class AuthApiClient{
 
   @GET(AppEndpoints.logout)
   Future<AuthResponse> logout();
+
+  @POST(AppEndpoints.forgotPassword)
+  Future<ForgetPasswordResponse> forgotPassword(
+      @Body() ForgotPasswordRequest request);
+
+  @POST(AppEndpoints.verifyResetCode)
+  Future<ForgetPasswordResponse> verifyResetCode(
+      @Body() VerifyResetCodeRequest request);
+
+  @PUT(AppEndpoints.resetPassword)
+  Future<ForgetPasswordResponse> resetPassword(
+      @Body() ResetPasswordRequest request);
 }

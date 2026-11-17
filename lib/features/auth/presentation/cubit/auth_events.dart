@@ -1,13 +1,14 @@
-
 sealed class AuthEvents {}
 
 final class LoginEvent extends AuthEvents {
   final String email;
   final String password;
+  final bool rememberMe;
 
   LoginEvent({
     required this.email,
     required this.password,
+    this.rememberMe = false,
   });
 }
 

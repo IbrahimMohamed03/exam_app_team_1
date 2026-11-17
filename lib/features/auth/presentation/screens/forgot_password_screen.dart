@@ -2,8 +2,12 @@ import 'package:exam_app_team_1/config/routing/routes.dart';
 import 'package:exam_app_team_1/core/constants/app_colors.dart';
 import 'package:exam_app_team_1/core/constants/media_query.dart';
 import 'package:exam_app_team_1/core/constants/ui_strings.dart';
+import 'package:exam_app_team_1/features/auth/presentation/cubit/forgot_password_cubit.dart'; //
+import 'package:exam_app_team_1/features/auth/presentation/cubit/forgot_password_events.dart'; //
+import 'package:exam_app_team_1/features/auth/presentation/cubit/forgot_password_state.dart'; //
 import 'package:exam_app_team_1/features/auth/presentation/widgets/regex_handler.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart'; //
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});
@@ -11,8 +15,6 @@ class ForgotPasswordScreen extends StatefulWidget {
   @override
   State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
 }
-
-
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   final _formKey = GlobalKey<FormState>();
@@ -38,151 +40,182 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final emailError = _isTouched && !_isValidEmail
-        ? UiStrings.ThisEmailIsNotValid
-        : null;
+    final emailError =
+    _isTouched && !_isValidEmail ? UiStrings.ThisEmailIsNotValid : null;
 
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: context.screenHeight * 0.02),
+    //  كل الـ Scaffold اتلف في BlocConsumer
+    return BlocConsumer<ForgotPasswordCubit, ForgotPasswordState>(
+      // يسمع بس لما حالة forgotPasswordState تتغير
+      listenWhen: (p, c) => p.forgotPasswordState != c.forgotPasswordState,
+      listener: (context, state) {
+        final s = state.forgotPasswordState;
+        if (s?.errMsg != null) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(s!.errMsg!), backgroundColor: Colors.red),
+          );
+        } else if (s?.data != null) {
+          //  نمرر نفس الـ Cubit للشاشة اللي بعدها
+          Navigator.pushNamed(
+            context,
+            Routes.verificationCode,
+            arguments: context.read<ForgotPasswordCubit>(),
+          );
+        }
+      },
+      builder: (context, state) {
+        final isLoading = state.forgotPasswordState?.isLoading ?? false; //
 
-                // Header with Back arrow & "Password" text
-                Row(
+        return Scaffold(
+          backgroundColor: AppColors.background,
+          body: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    InkWell(
-                      onTap: () => Navigator.pop(context),
-                      borderRadius: BorderRadius.circular(8),
-                      child: Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Icon(
-                              Icons.arrow_back_ios_new,
-                              size: 18,
-                              color: AppColors.textPrimary,
+                    SizedBox(height: context.screenHeight * 0.02),
+
+                    Row(
+                      children: [
+                        InkWell(
+                          onTap: () => Navigator.pop(context),
+                          borderRadius: BorderRadius.circular(8),
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Icon(
+                                  Icons.arrow_back_ios_new,
+                                  size: 18,
+                                  color: AppColors.textPrimary,
+                                ),
+                                const SizedBox(width: 4),
+                                Text(
+                                  'Password',
+                                  style: theme.textTheme.titleMedium?.copyWith(
+                                    color: AppColors.textPrimary,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ],
                             ),
-                            const SizedBox(width: 4),
-                            Text(
-                              'Password',
-                              style: theme.textTheme.titleMedium?.copyWith(
-                                color: AppColors.textPrimary,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ],
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    SizedBox(height: context.screenHeight * 0.03),
+
+                    Center(
+                      child: Text(
+                        UiStrings.ForgetPassword,
+                        style: theme.textTheme.headlineMedium?.copyWith(
+                          color: AppColors.textPrimary,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
+
+                    SizedBox(height: context.screenHeight * 0.015),
+
+                    Center(
+                      child: Text(
+                        UiStrings.PleaseEnterYourEmailAssociated,
+                        textAlign: TextAlign.center,
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          color: AppColors.textSecondary,
+                        ),
+                      ),
+                    ),
+
+                    SizedBox(height: context.screenHeight * 0.04),
+
+                    TextFormField(
+                      controller: _emailController,
+                      keyboardType: TextInputType.emailAddress,
+                      onChanged: _validateInput,
+                      decoration: InputDecoration(
+                        labelText: UiStrings.Email,
+                        hintText: UiStrings.EnterYourEmail,
+                        errorText: emailError,
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(
+                            color: emailError != null
+                                ? AppColors.error
+                                : AppColors.border,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(
+                            color: emailError != null
+                                ? AppColors.error
+                                : AppColors.primary,
+                            width: 2,
+                          ),
+                        ),
+                        errorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: const BorderSide(
+                            color: AppColors.error,
+                            width: 1.5,
+                          ),
+                        ),
+                        focusedErrorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: const BorderSide(
+                            color: AppColors.error,
+                            width: 2,
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    SizedBox(height: context.screenHeight * 0.075),
+
+                    //  زرار Continue بعد التعديل
+                    SizedBox(
+                      height: 48,
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: (_isValidEmail && !isLoading)
+                            ? () => context.read<ForgotPasswordCubit>().onEvent(
+                          SubmitEmailEvent(
+                            email: _emailController.text.trim(),
+                          ),
+                        )
+                            : null,
+                        child: isLoading
+                            ? const SizedBox(
+                          height: 22,
+                          width: 22,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            color: Colors.white,
+                          ),
+                        )
+                            : const Text(
+                          UiStrings.Continue,
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    SizedBox(height: context.screenHeight * 0.03),
                   ],
                 ),
-
-                SizedBox(height: context.screenHeight * 0.03),
-
-                // Centered Title
-                Center(
-                  child: Text(
-                    UiStrings.ForgetPassword,
-                    style: theme.textTheme.headlineMedium?.copyWith(
-                      color: AppColors.textPrimary,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-
-                SizedBox(height: context.screenHeight * 0.015),
-
-                // Subtitle
-                Center(
-                  child: Text(
-                    UiStrings.PleaseEnterYourEmailAssociated,
-                    textAlign: TextAlign.center,
-                    style: theme.textTheme.bodyMedium?.copyWith(
-                      color: AppColors.textSecondary,
-                    ),
-                  ),
-                ),
-
-                SizedBox(height: context.screenHeight * 0.04),
-
-                // Input Field
-                TextFormField(
-                  controller: _emailController,
-                  keyboardType: TextInputType.emailAddress,
-                  onChanged: _validateInput,
-                  decoration: InputDecoration(
-                    labelText: UiStrings.Email,
-                    hintText: UiStrings.EnterYourEmail,
-                    errorText: emailError,
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
-                        color: emailError != null ? AppColors.error : AppColors.border,
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
-                        color: emailError != null ? AppColors.error : AppColors.primary,
-                        width: 2,
-                      ),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(
-                        color: AppColors.error,
-                        width: 1.5,
-                      ),
-                    ),
-                    focusedErrorBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(
-                        color: AppColors.error,
-                        width: 2,
-                      ),
-                    ),
-                  ),
-                ),
-
-                SizedBox(height: context.screenHeight * 0.075),
-
-                // Primary "Continue" Button
-                SizedBox(
-                  height: 48,
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: _isValidEmail
-                        ? () {
-                            Navigator.pushNamed(
-                              context,
-                              Routes.verificationCode,
-                            );
-                          }
-                        : null,
-                    child: const Text(
-                      UiStrings.Continue,
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-
-                SizedBox(height: context.screenHeight * 0.03),
-              ],
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

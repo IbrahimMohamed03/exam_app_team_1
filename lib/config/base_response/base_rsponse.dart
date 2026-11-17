@@ -28,6 +28,10 @@ class ErrorBaseResponse<T>  extends BaseResponse<T> {
           return "Bad Certificate";
 
         case DioExceptionType.badResponse:
+          final data = errorObj.response?.data;
+          if (data is Map && data['message'] is String) {
+            return data['message'] as String;
+          }
           int? statusCode = errorObj.response?.statusCode;
           return _getStatusCode(statusCode);
 
