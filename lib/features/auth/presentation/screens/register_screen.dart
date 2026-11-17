@@ -1,9 +1,10 @@
 import 'package:exam_app_team_1/config/routing/routes.dart';
-import 'package:exam_app_team_1/features/auth/presentation/cubit/auth_cubit.dart';
-import 'package:exam_app_team_1/features/auth/presentation/cubit/auth_state.dart';
-import 'package:exam_app_team_1/features/auth/presentation/widgets/register_form.dart';
+import 'package:exam_app_team_1/features/auth/presentation/cubit/auth/auth_cubit.dart';
+import 'package:exam_app_team_1/features/auth/presentation/widgets/register/register_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../cubit/auth/auth_state.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});

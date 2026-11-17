@@ -8,8 +8,8 @@ import 'package:exam_app_team_1/features/auth/domain/params/verify_reset_code_pa
 import 'package:exam_app_team_1/features/auth/domain/usecases/forgot_password_usecase.dart';
 import 'package:exam_app_team_1/features/auth/domain/usecases/reset_password_usecase.dart';
 import 'package:exam_app_team_1/features/auth/domain/usecases/verify_reset_code_usecase.dart';
-import 'package:exam_app_team_1/features/auth/presentation/cubit/forgot_password_events.dart';
-import 'package:exam_app_team_1/features/auth/presentation/cubit/forgot_password_state.dart';
+import 'package:exam_app_team_1/features/auth/presentation/cubit/forgot_password/forgot_password_events.dart';
+import 'package:exam_app_team_1/features/auth/presentation/cubit/forgot_password/forgot_password_state.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable()

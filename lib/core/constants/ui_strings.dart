@@ -8,9 +8,9 @@ class UiStrings {
   static const String  ConfirmPassword  = "Confirm password ";
   static const String EnterYourPassword  = "Enter your password ";
   static const String RememberMe = "Remember me ";
-  static const String ForgetPassword = "Forget password";
-  static const String DontHaveAnAccount = "Don't have an account?";
-  static const String SignUp = "Sign up";
+  static const String ForgetPassword = "Forgot password?";
+  static const String DontHaveAnAccount = "Don't have an account? ";
+  static const String SignUp = "Signup";
   static const String UserName = "User name";
   static const String EnterYourUserName = "Enter your user name";
   static const String FirstName = "First name";

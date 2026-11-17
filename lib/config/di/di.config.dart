@@ -31,10 +31,10 @@ import '../../features/auth/domain/usecases/reset_password_usecase.dart'
     as _i474;
 import '../../features/auth/domain/usecases/verify_reset_code_usecase.dart'
     as _i694;
-import '../../features/auth/presentation/cubit/auth_cubit.dart' as _i117;
-import '../../features/auth/presentation/cubit/forgot_password_cubit.dart'
+import '../../features/auth/presentation/cubit/auth/auth_cubit.dart' as _i117;
+import '../../features/auth/presentation/cubit/forgot_password/forgot_password_cubit.dart'
     as _i104;
-import '../../features/auth/presentation/cubit/splash_cubit.dart' as _i248;
+import '../../features/auth/presentation/cubit/splash/splash_cubit.dart' as _i248;
 import '../../features/home/api/api_client/home_api_client.dart' as _i592;
 import '../../features/home/api/datasources/home_data_source_impl.dart'
     as _i197;

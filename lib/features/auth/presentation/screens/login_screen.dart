@@ -1,10 +1,10 @@
 import 'package:exam_app_team_1/config/routing/routes.dart';
+import 'package:exam_app_team_1/features/auth/presentation/cubit/auth/auth_state.dart';
+import 'package:exam_app_team_1/features/auth/presentation/widgets/login/login_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../cubit/auth_cubit.dart';
-import '../cubit/auth_state.dart';
-import '../widgets/login_form.dart';
+import '../cubit/auth/auth_cubit.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});

@@ -18,4 +18,10 @@ class AppColors {
   static const Color border = Color(0xFF535353);
 
   static const Color success = Color(0xFF00B85A);
+  
+  static const Color hintTextColor = Color(0xFFA6A6A6);
+
+  static const Color dontHaveAnAccount = Color(0xFF0C1015);
+
+  static const Color disabledButton = Color(0xFF878787);
 }

@@ -28,11 +28,18 @@ class AppTheme{
         ),
 
         textTheme: TextTheme(
-
+          headlineSmall: TextStyle(
+            fontSize: 16,
+            color: AppColors.dontHaveAnAccount
+          ),
+          headlineMedium: TextStyle(
+            fontSize: 14,
+            color: AppColors.hintTextColor
+          ),
           headlineLarge: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
-            color: AppColors.textPrimary,
+            color: AppColors.appBarTitle,
           ),
           bodyLarge: TextStyle(
             fontSize: 16,
@@ -64,7 +71,11 @@ class AppTheme{
         ),
 
         inputDecorationTheme: InputDecorationTheme(
-          labelStyle: TextStyle(fontSize: 12,color: AppColors.textPrimary),
+          hintStyle: TextStyle(
+              fontSize: 14,
+              color: AppColors.hintTextColor
+          ),
+          labelStyle: TextStyle(fontSize: 12,color: AppColors.border),
           floatingLabelBehavior: FloatingLabelBehavior.always,
           filled: false,
           contentPadding: EdgeInsets.symmetric(
@@ -92,9 +103,9 @@ class AppTheme{
               }
               return Colors.transparent;
             }),
-            side: const BorderSide(color: AppColors.border)
-        )
-
+            side: const BorderSide(color: AppColors.border,
+    width: 2,
+    ))
     );
   }
 }

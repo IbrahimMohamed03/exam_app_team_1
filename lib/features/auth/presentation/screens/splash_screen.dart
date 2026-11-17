@@ -1,8 +1,8 @@
 import 'package:exam_app_team_1/config/routing/routes.dart';
 import 'package:exam_app_team_1/core/constants/app_colors.dart';
-import 'package:exam_app_team_1/features/auth/presentation/cubit/splash_cubit.dart';
-import 'package:exam_app_team_1/features/auth/presentation/cubit/splash_events.dart';
-import 'package:exam_app_team_1/features/auth/presentation/cubit/splash_state.dart';
+import 'package:exam_app_team_1/features/auth/presentation/cubit/splash/splash_cubit.dart';
+import 'package:exam_app_team_1/features/auth/presentation/cubit/splash/splash_events.dart';
+import 'package:exam_app_team_1/features/auth/presentation/cubit/splash/splash_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

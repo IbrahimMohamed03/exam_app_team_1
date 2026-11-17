@@ -1,22 +1,12 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 
+part 'base_state.freezed.dart';
 
-class BaseState<T> {
-
-  bool isLoading;
-  String? errMsg;
-  T? data;
-
-  BaseState({this.isLoading=false,this.data,this.errMsg});
-
-  BaseState<T> copyWith({
-    bool? isLoading,
+@freezed
+abstract class BaseState<T> with _$BaseState<T> {
+  const factory BaseState({
+    @Default(false) bool isLoading,
     String? errMsg,
-    T? data
-  }){
-    return BaseState(
-        isLoading: isLoading?? this.isLoading,
-        errMsg: errMsg?? this.errMsg,
-        data: data?? this.data
-    );
-  }
+    T? data,
+  }) = _BaseState<T>;
 }

@@ -5,8 +5,8 @@ import 'package:exam_app_team_1/features/auth/domain/params/login_params.dart';
 import 'package:exam_app_team_1/features/auth/domain/params/register_params.dart';
 import 'package:exam_app_team_1/features/auth/domain/usecases/login_usecase.dart';
 import 'package:exam_app_team_1/features/auth/domain/usecases/register_usecase.dart';
-import 'package:exam_app_team_1/features/auth/presentation/cubit/auth_events.dart';
-import 'package:exam_app_team_1/features/auth/presentation/cubit/auth_state.dart';
+import 'package:exam_app_team_1/features/auth/presentation/cubit/auth/auth_events.dart';
+import 'package:exam_app_team_1/features/auth/presentation/cubit/auth/auth_state.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
@@ -63,13 +63,13 @@ class AuthCubit extends Cubit<AuthState> {
     );
 
     emit(state.copyWith(
-        userState: state.userState?.copyWith(isLoading: true, errMsg: null)));
+        userState: state.userState.copyWith(isLoading: true, errMsg: null)));
 
     BaseResponse<UserEntity>? response = await loginUsecase(request);
     switch (response) {
       case SuccessBaseResponse<UserEntity>():
         emit(state.copyWith(
-            userState: state.userState?.copyWith(
+            userState: state.userState.copyWith(
               data: response.data,
               isLoading: false,
               errMsg: null,
@@ -77,7 +77,7 @@ class AuthCubit extends Cubit<AuthState> {
       case ErrorBaseResponse<UserEntity>():
         emit(state.copyWith(
             userState: state.userState
-                ?.copyWith(errMsg: response.errorMsg, isLoading: false)));
+                .copyWith(errMsg: response.errorMsg, isLoading: false)));
     }
   }
 
@@ -92,18 +92,18 @@ class AuthCubit extends Cubit<AuthState> {
         lastName: lastName,
         rePassword: rePassword);
     emit(state.copyWith(
-        userState: state.userState?.copyWith(isLoading: true, errMsg: null)));
+        userState: state.userState.copyWith(isLoading: true, errMsg: null)));
 
     BaseResponse<UserEntity>? response = await registerUsecase(request);
     switch (response) {
       case SuccessBaseResponse<UserEntity>():
         emit(state.copyWith(
-            userState: state.userState?.copyWith(data: response.data)));
+            userState: state.userState.copyWith(data: response.data)));
         print(response.data);
       case ErrorBaseResponse<UserEntity>():
         emit(state.copyWith(
             userState: state.userState
-                ?.copyWith(errMsg: response.errorMsg, isLoading: false)));
+                .copyWith(errMsg: response.errorMsg, isLoading: false)));
         print(response.errorMsg);
     }
   }

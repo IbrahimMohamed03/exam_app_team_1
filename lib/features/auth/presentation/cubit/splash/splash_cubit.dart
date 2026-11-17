@@ -1,8 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:exam_app_team_1/config/base_state/base_state.dart';
 import 'package:exam_app_team_1/features/auth/domain/usecases/check_login_status_usecase.dart';
-import 'package:exam_app_team_1/features/auth/presentation/cubit/splash_events.dart';
-import 'package:exam_app_team_1/features/auth/presentation/cubit/splash_state.dart';
+import 'package:exam_app_team_1/features/auth/presentation/cubit/splash/splash_events.dart';
+import 'package:exam_app_team_1/features/auth/presentation/cubit/splash/splash_state.dart';
+
 import 'package:injectable/injectable.dart';
 
 @Injectable()
