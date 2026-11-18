@@ -6,6 +6,7 @@ import 'package:exam_app_team_1/features/auth/presentation/cubit/forgot_password
 import 'package:exam_app_team_1/features/auth/presentation/widgets/reset_password/reset_password_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class ResetPasswordScreen extends StatelessWidget {
   const ResetPasswordScreen({super.key});
@@ -35,11 +36,7 @@ class ResetPasswordScreen extends StatelessWidget {
             ),
           );
 
-          Navigator.pushNamedAndRemoveUntil(
-            context,
-            Routes.login,
-                (route) => false,
-          );
+          context.go(Routes.login);
         }
       },
       child: const ResetPasswordForm(),

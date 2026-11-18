@@ -13,6 +13,7 @@ import 'package:exam_app_team_1/features/auth/presentation/widgets/verification_
 import 'package:exam_app_team_1/features/auth/presentation/widgets/verification_code/verification_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class VerificationCodeScreen extends StatefulWidget {
   const VerificationCodeScreen({super.key});
@@ -84,8 +85,7 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                 ),
               );
             } else if (s?.data != null) {
-              Navigator.pushNamed(context, Routes.resetPassword, arguments: context.read<ForgotPasswordCubit>(),
-              );
+              context.push(Routes.resetPassword);
             }
           },
         ),

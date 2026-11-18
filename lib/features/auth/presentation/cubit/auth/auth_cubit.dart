@@ -98,7 +98,11 @@ class AuthCubit extends Cubit<AuthState> {
     switch (response) {
       case SuccessBaseResponse<UserEntity>():
         emit(state.copyWith(
-            userState: state.userState.copyWith(data: response.data)));
+            userState: state.userState.copyWith(
+              data: response.data,
+              isLoading: false,
+              errMsg: null,
+            )));
         print(response.data);
       case ErrorBaseResponse<UserEntity>():
         emit(state.copyWith(

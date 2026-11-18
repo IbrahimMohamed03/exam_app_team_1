@@ -6,6 +6,7 @@ import 'package:exam_app_team_1/features/auth/presentation/cubit/forgot_password
 import 'package:exam_app_team_1/features/auth/presentation/widgets/forgot_password/forgot_password_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   const ForgotPasswordScreen({super.key});
@@ -26,11 +27,7 @@ class ForgotPasswordScreen extends StatelessWidget {
             ),
           );
         } else if (result.data != null) {
-          Navigator.pushNamed(
-            context,
-            Routes.verificationCode,
-            arguments: context.read<ForgotPasswordCubit>(),
-          );
+          context.push(Routes.verificationCode);
         }
       },
       child: const Scaffold(

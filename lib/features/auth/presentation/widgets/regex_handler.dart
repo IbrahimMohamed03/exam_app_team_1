@@ -6,7 +6,7 @@ class RegexHandler {
   );
 
   static final RegExp _passwordRegex = RegExp(
-    r'^(?=.*[A-Z])(?=.*\d).{6,}$',
+    r'^(?=.*[A-Z])(?=.*\d).{8,}$',
   );
 
   static final RegExp _phoneRegex = RegExp(

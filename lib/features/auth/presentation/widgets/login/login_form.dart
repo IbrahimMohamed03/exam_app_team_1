@@ -6,6 +6,7 @@ import 'package:exam_app_team_1/features/auth/presentation/widgets/login/login_o
 import 'package:exam_app_team_1/features/auth/presentation/widgets/login/login_password_field.dart';
 import 'package:exam_app_team_1/features/auth/presentation/widgets/regex_handler.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -85,7 +86,7 @@ class _LoginFormState extends State<LoginForm> {
                  Text(UiStrings.DontHaveAnAccount,style: theme.textTheme.headlineSmall,),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, Routes.register);
+                    context.push(Routes.register);
                   },
                   child: Text(
                     UiStrings.SignUp,

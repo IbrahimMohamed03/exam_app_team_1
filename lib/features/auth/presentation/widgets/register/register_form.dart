@@ -13,6 +13,7 @@ import 'package:exam_app_team_1/features/auth/presentation/widgets/register/regi
 import 'package:exam_app_team_1/features/auth/presentation/widgets/register/register_username_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class RegisterForm extends StatefulWidget {
   const RegisterForm({super.key});
