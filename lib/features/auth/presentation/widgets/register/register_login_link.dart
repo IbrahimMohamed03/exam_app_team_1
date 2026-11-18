@@ -2,6 +2,7 @@
 import 'package:exam_app_team_1/config/routing/routes.dart';
 import 'package:exam_app_team_1/core/constants/ui_strings.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class RegisterLoginLink extends StatelessWidget {
   const RegisterLoginLink({super.key});
@@ -16,10 +17,7 @@ class RegisterLoginLink extends StatelessWidget {
          Text(UiStrings.AlreadyHaveAnAccount,style: theme.textTheme.headlineSmall,),
         GestureDetector(
           onTap: () {
-            Navigator.pushReplacementNamed(
-              context,
-              Routes.login,
-            );
+            context.go(Routes.login);
           },
           child: Text(
             UiStrings.Login,

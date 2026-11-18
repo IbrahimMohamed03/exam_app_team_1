@@ -49,7 +49,7 @@ class AuthRepositoryImpl implements AuthRepository {
     switch (response) {
       case SuccessBaseResponse<AuthResponse>():
         final token = response.data.token;
-        print('DEBUG login token=${token != null ? "exists" : "null"} rememberMe=${params.rememberMe}'); // مؤقت
+        print('DEBUG login token=${token != null ? "exists" : "null"} rememberMe=${params.rememberMe}');
         if (token != null) {
           await tokenStorage.saveToken(token, persist: params.rememberMe);
         }

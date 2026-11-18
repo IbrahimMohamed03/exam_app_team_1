@@ -26,7 +26,7 @@ class UiStrings {
   static const String ThisEmailIsNotValid  = " This Email is not valid";
   static const String InvalidCode  = "Invalid code";
   static const String ResetPassword  = "Reset password";
-  static const String PasswordMust  = "Password must not be empty and must contain 6 characters with upper case letter and one number at least ";
+  static const String PasswordMust  = "Password must not be empty and must contain 8 characters with upper case letter and one number at least ";
   static const String NewPassword  = "New password";
   static const String Continue  = "Continue";
   static const String Profile = "Profile";

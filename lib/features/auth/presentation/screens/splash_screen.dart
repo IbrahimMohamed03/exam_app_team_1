@@ -5,6 +5,7 @@ import 'package:exam_app_team_1/features/auth/presentation/cubit/splash/splash_e
 import 'package:exam_app_team_1/features/auth/presentation/cubit/splash/splash_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -26,12 +27,13 @@ class _SplashScreenState extends State<SplashScreen> {
       listenWhen: (p, c) => p.loginState != c.loginState,
       listener: (context, state) {
         final isLoggedIn = state.loginState.data;
-        if (isLoggedIn == null) return; // لسه بيفحص
+        if (isLoggedIn == null) return;
 
-        Navigator.pushReplacementNamed(
-          context,
-          isLoggedIn ? Routes.homeScreen : Routes.login,
-        );
+        if (isLoggedIn) {
+          context.go(Routes.homeScreen);
+        } else {
+          context.go(Routes.login);
+        }
       },
       child: const Scaffold(
         backgroundColor: AppColors.background,
