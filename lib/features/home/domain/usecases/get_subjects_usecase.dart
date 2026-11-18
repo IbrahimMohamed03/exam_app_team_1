@@ -10,7 +10,7 @@ class GetSubjectsUsecase {
 
   GetSubjectsUsecase(this.homeRepository);
 
-  Future<BaseResponse<List<SubjectEntity>>> call() async {
+  Future<BaseResponse<List<SubjectEntity>?>> call() async {
     return await homeRepository.getAllSubjects();
   }
 }

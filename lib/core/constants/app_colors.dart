@@ -24,4 +24,12 @@ class AppColors {
   static const Color dontHaveAnAccount = Color(0xFF0C1015);
 
   static const Color disabledButton = Color(0xFF878787);
+
+  static const Color subjectNameColor = Color(0xFF000000);
+
+  static const Color bottomBarSelectedColor = Color(0xFFDCE5F8);
+
+  static const Color searchIcon = Color(0xFF878787);
+
+// static const Color cardBorder = Color(0xFFEAEAEA);
 }

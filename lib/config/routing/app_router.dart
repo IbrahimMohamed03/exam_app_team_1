@@ -9,6 +9,8 @@ import 'package:exam_app_team_1/features/auth/presentation/screens/register_scre
 import 'package:exam_app_team_1/features/auth/presentation/screens/reset_password_screen.dart';
 import 'package:exam_app_team_1/features/auth/presentation/screens/splash_screen.dart';
 import 'package:exam_app_team_1/features/auth/presentation/screens/verification_code_screen.dart';
+import 'package:exam_app_team_1/features/home/presentation/cubit/home_events.dart';
+import 'package:exam_app_team_1/features/home/presentation/cubit/home_view_model.dart';
 import 'package:exam_app_team_1/features/home/presentation/screens/home_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -64,7 +66,10 @@ class AppRouter {
 
       GoRoute(
         path: Routes.homeScreen,
-        builder: (context, state) => const HomeScreen(),
+        builder: (context, state) =>  BlocProvider(
+            create: (_)=>getIt<HomeCubit>()..onEvent(SubjectsEvent()),
+          child: HomeScreen(),
+        ),
       ),
     ],
   );

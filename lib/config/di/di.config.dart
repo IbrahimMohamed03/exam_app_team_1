@@ -31,10 +31,11 @@ import '../../features/auth/domain/usecases/reset_password_usecase.dart'
     as _i474;
 import '../../features/auth/domain/usecases/verify_reset_code_usecase.dart'
     as _i694;
-import '../../features/auth/presentation/cubit/auth/auth_cubit.dart' as _i117;
+import '../../features/auth/presentation/cubit/auth/auth_cubit.dart' as _i546;
 import '../../features/auth/presentation/cubit/forgot_password/forgot_password_cubit.dart'
-    as _i104;
-import '../../features/auth/presentation/cubit/splash/splash_cubit.dart' as _i248;
+    as _i344;
+import '../../features/auth/presentation/cubit/splash/splash_cubit.dart'
+    as _i22;
 import '../../features/home/api/api_client/home_api_client.dart' as _i592;
 import '../../features/home/api/datasources/home_data_source_impl.dart'
     as _i197;
@@ -46,6 +47,8 @@ import '../../features/home/domain/repositories/home_repository.dart' as _i0;
 import '../../features/home/domain/usecases/get_one_subject_usecase.dart'
     as _i703;
 import '../../features/home/domain/usecases/get_subjects_usecase.dart' as _i895;
+import '../../features/home/presentation/cubit/home_view_model.dart' as _i174;
+import '../dio/auth_interceptor.dart' as _i839;
 import '../dio/dio.dart' as _i889;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -56,8 +59,11 @@ extension GetItInjectableX on _i174.GetIt {
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final dioModule = _$DioModule();
-    gh.singleton<_i361.Dio>(() => dioModule.dio);
     gh.lazySingleton<_i1001.TokenStorage>(() => _i1001.TokenStorage());
+    gh.lazySingleton<_i839.AuthInterceptor>(
+      () => _i839.AuthInterceptor(gh<_i1001.TokenStorage>()),
+    );
+    gh.singleton<_i361.Dio>(() => dioModule.dio(gh<_i839.AuthInterceptor>()));
     gh.lazySingleton<_i775.AuthApiClient>(
       () => _i775.AuthApiClient(gh<_i361.Dio>()),
     );
@@ -103,21 +109,24 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i694.VerifyResetCodeUsecase>(
       () => _i694.VerifyResetCodeUsecase(gh<_i787.AuthRepository>()),
     );
-    gh.factory<_i117.AuthCubit>(
-      () => _i117.AuthCubit(
+    gh.factory<_i546.AuthCubit>(
+      () => _i546.AuthCubit(
         gh<_i188.LoginUsecase>(),
         gh<_i941.RegisterUsecase>(),
       ),
     );
-    gh.factory<_i104.ForgotPasswordCubit>(
-      () => _i104.ForgotPasswordCubit(
+    gh.factory<_i344.ForgotPasswordCubit>(
+      () => _i344.ForgotPasswordCubit(
         gh<_i560.ForgotPasswordUsecase>(),
         gh<_i694.VerifyResetCodeUsecase>(),
         gh<_i474.ResetPasswordUsecase>(),
       ),
     );
-    gh.factory<_i248.SplashCubit>(
-      () => _i248.SplashCubit(gh<_i724.CheckLoginStatusUsecase>()),
+    gh.factory<_i174.HomeCubit>(
+      () => _i174.HomeCubit(gh<_i895.GetSubjectsUsecase>()),
+    );
+    gh.factory<_i22.SplashCubit>(
+      () => _i22.SplashCubit(gh<_i724.CheckLoginStatusUsecase>()),
     );
     return this;
   }
