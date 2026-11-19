@@ -23,14 +23,13 @@ class SplashCubit extends Cubit<SplashState> {
   Future<void> _checkLogin() async {
     emit(state.copyWith(loginState: BaseState<bool>(isLoading: true)));
 
-    // مدة قصيرة لعرض الـ Splash (تقدر تشيلها لو مش عايزها)
+
     await Future.delayed(const Duration(seconds: 1));
 
     try {
       final isLoggedIn = await checkLoginStatusUsecase();
       emit(state.copyWith(loginState: BaseState<bool>(data: isLoggedIn)));
     } catch (_) {
-      // لو حصل أي خطأ في قراءة التوكن نعتبره مش مسجل دخول
       emit(state.copyWith(loginState: BaseState<bool>(data: false)));
     }
   }

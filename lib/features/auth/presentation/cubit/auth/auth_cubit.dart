@@ -49,7 +49,7 @@ class AuthCubit extends Cubit<AuthState> {
         );
         return;
       case LogoutEvent():
-      // TODO: Handle this case.
+
     }
   }
 
