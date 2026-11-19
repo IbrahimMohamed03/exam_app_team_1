@@ -6,4 +6,5 @@ class Routes {
   static const String verificationCode = '/VerificationCode';
   static const String resetPassword = '/ResetPassword';
   static const String splash = '/Splash';
+
 }

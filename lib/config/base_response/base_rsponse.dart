@@ -10,6 +10,7 @@ class SuccessBaseResponse<T> extends BaseResponse<T> {
   SuccessBaseResponse(this.data);
 }
 
+
 class ErrorBaseResponse<T>  extends BaseResponse<T> {
   String errorMsg;
   Object? errorObj;

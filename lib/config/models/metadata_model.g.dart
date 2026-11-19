@@ -13,6 +13,7 @@ _MetadataModel _$MetadataModelFromJson(Map<String, dynamic> json) =>
       limit: (json['limit'] as num).toInt(),
     );
 
+
 Map<String, dynamic> _$MetadataModelToJson(_MetadataModel instance) =>
     <String, dynamic>{
       'currentPage': instance.currentPage,
