@@ -1,5 +1,6 @@
 import 'package:exam_app_team_1/config/di/di.dart';
 import 'package:exam_app_team_1/config/routing/routes.dart';
+import 'package:exam_app_team_1/core/nav_bar/main_screen.dart';
 import 'package:exam_app_team_1/features/auth/presentation/cubit/auth/auth_cubit.dart';
 import 'package:exam_app_team_1/features/auth/presentation/cubit/forgot_password/forgot_password_cubit.dart';
 import 'package:exam_app_team_1/features/auth/presentation/cubit/splash/splash_cubit.dart';
@@ -9,6 +10,7 @@ import 'package:exam_app_team_1/features/auth/presentation/screens/register_scre
 import 'package:exam_app_team_1/features/auth/presentation/screens/reset_password_screen.dart';
 import 'package:exam_app_team_1/features/auth/presentation/screens/splash_screen.dart';
 import 'package:exam_app_team_1/features/auth/presentation/screens/verification_code_screen.dart';
+import 'package:exam_app_team_1/features/fake_profile_screen.dart';
 import 'package:exam_app_team_1/features/home/presentation/cubit/home_events.dart';
 import 'package:exam_app_team_1/features/home/presentation/cubit/home_view_model.dart';
 import 'package:exam_app_team_1/features/home/presentation/screens/home_view.dart';
@@ -64,13 +66,32 @@ class AppRouter {
         ],
       ),
 
-      GoRoute(
-        path: Routes.homeScreen,
-        builder: (context, state) =>  BlocProvider(
-            create: (_)=>getIt<HomeCubit>()..onEvent(SubjectsEvent()),
-          child: HomeScreen(),
-        ),
-      ),
+      // GoRoute(
+      //   path: Routes.homeScreen,
+      //   builder: (context, state) =>  BlocProvider(
+      //       create: (_)=>getIt<HomeCubit>()..onEvent(SubjectsEvent()),
+      //     child: HomeScreen(),
+      //   ),
+      // ),
+      
+      ShellRoute(
+        builder: (context,state,child){
+          return MainScaffold(child: child);
+        },
+          routes: [
+            GoRoute(
+                path: Routes.homeScreen,
+              builder: (context, state) => BlocProvider(
+                create: (_) => getIt<HomeCubit>()..onEvent(SubjectsEvent()),
+                child: HomeScreen(),
+              ),
+            ),
+            GoRoute(
+              path: Routes.profile,
+              builder: (context,state)=>  ProfileScreen()
+            )
+
+      ])
     ],
   );
 }
