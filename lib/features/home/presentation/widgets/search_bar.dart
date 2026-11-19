@@ -4,6 +4,7 @@
 import 'package:exam_app_team_1/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
+
 class SearchBarWidget extends StatefulWidget {
   SearchBarWidget({super.key, required this.onSearchChanged});
    final ValueChanged<String> onSearchChanged;

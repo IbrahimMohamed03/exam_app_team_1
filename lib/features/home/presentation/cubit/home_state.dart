@@ -2,6 +2,7 @@
 import 'package:exam_app_team_1/config/base_state/base_state.dart';
 import 'package:exam_app_team_1/features/home/domain/entities/subject_entity.dart';
 
+
 class HomeState{
   final BaseState<List<SubjectEntity>?>? subjectsState;
   HomeState({BaseState<List<SubjectEntity>?>? subjectsState }): subjectsState=subjectsState?? BaseState<List<SubjectEntity>?>();

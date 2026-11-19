@@ -3,6 +3,7 @@ import 'package:exam_app_team_1/core/constants/app_colors.dart';
 import 'package:exam_app_team_1/features/home/domain/entities/subject_entity.dart';
 import 'package:flutter/material.dart';
 
+
 class SubjectCard extends StatelessWidget {
   const SubjectCard({super.key, required this.subject});
 

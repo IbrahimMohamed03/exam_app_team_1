@@ -7,6 +7,7 @@ class AppBottomNavBar extends StatelessWidget {
     required this.onTap,
   });
 
+
   final int currentIndex;
   final ValueChanged<int> onTap;
 

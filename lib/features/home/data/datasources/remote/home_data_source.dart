@@ -6,6 +6,7 @@ import '../../models/responses/one_subject_response.dart';
 
 abstract class HomeDataSource{
 
+
   Future<BaseResponse<SubjectResponse>> getAllSubjects();
   Future<BaseResponse<OneSubjectResponse>> getOneSubject(String subjectId);
 }

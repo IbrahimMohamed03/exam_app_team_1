@@ -7,6 +7,7 @@ import 'package:exam_app_team_1/features/home/presentation/widgets/subject_card.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+
 class HomeBlocBuilder extends StatelessWidget {
    HomeBlocBuilder({super.key, required this.searchQuery});
 

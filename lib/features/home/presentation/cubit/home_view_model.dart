@@ -21,6 +21,7 @@ switch(event){
 }
 }
 
+
 Future<void> _getSubjects()async{
   emit(state.copyWith(subjectsState: state.subjectsState?.copyWith(isLoading: true,errMsg: null)));
   BaseResponse<List<SubjectEntity>?> response = await _getSubjectsUsecase();

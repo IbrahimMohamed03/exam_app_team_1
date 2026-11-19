@@ -18,6 +18,7 @@ import '../models/forgot_password_request.dart';
 import '../models/reset_password_request.dart';
 import '../models/verify_reset_code_request.dart';
 
+
 @LazySingleton(as: AuthRepository)
 class AuthRepositoryImpl implements AuthRepository {
   final AuthDataSource authDataSource;
