@@ -28,6 +28,7 @@ class MainScaffold extends StatelessWidget {
         break;
     }
   }
+
   @override
   Widget build(BuildContext context) {
     final currentIndex = _getCurrentIndex(GoRouterState.of(context).uri.path);
