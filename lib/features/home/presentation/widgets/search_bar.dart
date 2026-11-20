@@ -2,6 +2,7 @@
 
 
 import 'package:exam_app_team_1/core/constants/app_colors.dart';
+import 'package:exam_app_team_1/core/constants/ui_strings.dart';
 import 'package:flutter/material.dart';
 
 class SearchBarWidget extends StatefulWidget {
@@ -29,7 +30,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
           widget.onSearchChanged(value);
         },
         decoration: InputDecoration(
-          hintText: 'Search',
+          hintText: UiStrings.Search,
           hintStyle: const TextStyle(
             fontSize: 14,
             color: AppColors.searchIcon,

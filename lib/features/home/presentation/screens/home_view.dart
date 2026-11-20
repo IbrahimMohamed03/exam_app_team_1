@@ -1,6 +1,7 @@
 
 import 'package:exam_app_team_1/core/constants/app_colors.dart';
 import 'package:exam_app_team_1/core/constants/media_query.dart';
+import 'package:exam_app_team_1/core/constants/ui_strings.dart';
 import 'package:exam_app_team_1/features/home/presentation/cubit/home_state.dart';
 import 'package:exam_app_team_1/features/home/presentation/cubit/home_view_model.dart';
 import 'package:exam_app_team_1/features/home/presentation/widgets/home_bloc_builder.dart';
@@ -25,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Survey',
+          UiStrings.Survey,
           style: theme.appBarTheme.titleTextStyle?.copyWith(
             color: AppColors.primary,
           ),
@@ -48,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
             // Browse by subject
             Text(
-              'Browse by subject',
+              UiStrings.SearchBySubject,
               style: theme.textTheme.headlineLarge?.copyWith(
                 color: AppColors.appBarTitle,
                 fontSize: 16,
