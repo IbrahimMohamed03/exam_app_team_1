@@ -4,7 +4,6 @@ class UiStrings {
   static const String Login = "Login";
   static const String Email = "Email";
   static const String EnterYourEmail = "Enter your email";
-  static const String  password  = "Enter your password ";
   static const String  ConfirmPassword  = "Confirm password ";
   static const String EnterYourPassword  = "Enter your password ";
   static const String RememberMe = "Remember me ";
@@ -66,5 +65,10 @@ class UiStrings {
   static const String   Results   = "Results";
   static const String   Algebra   = "Algebra";
   static const String   Answers   = "Answers";
-
+  static const String NoSubjectsAvailable = "No subjects available";
+  static const String Search = "Search";
+  static const String SearchBySubject = 'Browse by subject';
+  static const String PasswordResetSuccess = 'Password reset successfully! Please log in.';
+  static const String VerificationCodeResent = 'Verification code resent!';
+  static const String password = 'password';
 }

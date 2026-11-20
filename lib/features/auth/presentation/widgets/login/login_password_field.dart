@@ -26,7 +26,7 @@ class _LoginPasswordFieldState extends State<LoginPasswordField> {
       obscureText: isPasswordObscured,
       validator: RegexHandler.validatePassword,
       decoration: InputDecoration(
-        labelText: 'Password',
+        labelText: UiStrings.password,
         hintText: UiStrings.EnterYourPassword,
         suffixIcon: IconButton(
           icon: Icon(
