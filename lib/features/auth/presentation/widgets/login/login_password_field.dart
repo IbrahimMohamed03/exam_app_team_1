@@ -1,4 +1,3 @@
-
 import 'package:exam_app_team_1/core/constants/ui_strings.dart';
 import 'package:exam_app_team_1/features/auth/presentation/widgets/regex_handler.dart';
 import 'package:flutter/material.dart';
@@ -12,8 +11,7 @@ class LoginPasswordField extends StatefulWidget {
   final TextEditingController controller;
 
   @override
-  State<LoginPasswordField> createState() =>
-      _LoginPasswordFieldState();
+  State<LoginPasswordField> createState() => _LoginPasswordFieldState();
 }
 
 class _LoginPasswordFieldState extends State<LoginPasswordField> {
@@ -26,7 +24,7 @@ class _LoginPasswordFieldState extends State<LoginPasswordField> {
       obscureText: isPasswordObscured,
       validator: RegexHandler.validatePassword,
       decoration: InputDecoration(
-        labelText: UiStrings.password,
+        labelText: UiStrings.Password,
         hintText: UiStrings.EnterYourPassword,
         suffixIcon: IconButton(
           icon: Icon(
