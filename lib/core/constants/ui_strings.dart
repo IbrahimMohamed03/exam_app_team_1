@@ -71,4 +71,5 @@ class UiStrings {
   static const String PasswordResetSuccess = 'Password reset successfully! Please log in.';
   static const String VerificationCodeResent = 'Verification code resent!';
   static const String password = 'password';
+  static const String AccountCreated = 'Account created successfully! Please log in.';
 }

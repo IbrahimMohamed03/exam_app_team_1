@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:exam_app_team_1/config/base_response/base_rsponse.dart';
+import 'package:exam_app_team_1/config/base_state/base_state.dart';
 import 'package:exam_app_team_1/features/auth/domain/entities/user_entity.dart';
 import 'package:exam_app_team_1/features/auth/domain/params/login_params.dart';
 import 'package:exam_app_team_1/features/auth/domain/params/register_params.dart';
@@ -22,7 +23,7 @@ class AuthCubit extends Cubit<AuthState> {
   TextEditingController registerLastNameController = TextEditingController();
   TextEditingController registerPhoneController = TextEditingController();
 
-  AuthCubit(this.loginUsecase, this.registerUsecase) : super(AuthState());
+  AuthCubit(this.loginUsecase, this.registerUsecase) : super(const AuthState());
 
   void onEvent(AuthEvents event) async {
     switch (event) {
@@ -37,7 +38,7 @@ class AuthCubit extends Cubit<AuthState> {
           :final firstName,
           :final lastName,
           :final rePassword,
-      ):
+        ):
         await _register(
           email,
           password,
@@ -49,11 +50,9 @@ class AuthCubit extends Cubit<AuthState> {
         );
         return;
       case LogoutEvent():
-
+        return;
     }
   }
-
-  void getData() async {}
 
   Future<void> _login(String email, String password, bool rememberMe) async {
     final request = LoginParams(
@@ -63,52 +62,68 @@ class AuthCubit extends Cubit<AuthState> {
     );
 
     emit(state.copyWith(
-        userState: state.userState.copyWith(isLoading: true, errMsg: null)));
+      userState: const BaseState(isLoading: true),
+    ));
 
     BaseResponse<UserEntity>? response = await loginUsecase(request);
     switch (response) {
       case SuccessBaseResponse<UserEntity>():
         emit(state.copyWith(
-            userState: state.userState.copyWith(
-              data: response.data,
-              isLoading: false,
-              errMsg: null,
-            )));
+          userState: BaseState(
+            data: response.data,
+            isLoading: false,
+          ),
+        ));
       case ErrorBaseResponse<UserEntity>():
         emit(state.copyWith(
-            userState: state.userState
-                .copyWith(errMsg: response.errorMsg, isLoading: false)));
+          userState: BaseState(
+            errMsg: response.errorMsg,
+            isLoading: false,
+          ),
+        ));
     }
   }
 
-  Future<void> _register(String email, String password, String username,
-      String phone, String firstName, String lastName, String rePassword) async {
+  Future<void> _register(
+    String email,
+    String password,
+    String username,
+    String phone,
+    String firstName,
+    String lastName,
+    String rePassword,
+  ) async {
     final request = RegisterParams(
-        email: email,
-        password: password,
-        username: username,
-        phone: phone,
-        firstName: firstName,
-        lastName: lastName,
-        rePassword: rePassword);
+      email: email,
+      password: password,
+      username: username,
+      phone: phone,
+      firstName: firstName,
+      lastName: lastName,
+      rePassword: rePassword,
+    );
+
+    // Reset previous data and error at start of request
     emit(state.copyWith(
-        userState: state.userState.copyWith(isLoading: true, errMsg: null)));
+      userState: const BaseState(isLoading: true),
+    ));
 
     BaseResponse<UserEntity>? response = await registerUsecase(request);
     switch (response) {
       case SuccessBaseResponse<UserEntity>():
         emit(state.copyWith(
-            userState: state.userState.copyWith(
-              data: response.data,
-              isLoading: false,
-              errMsg: null,
-            )));
-        print(response.data);
+          userState: BaseState(
+            data: response.data,
+            isLoading: false,
+          ),
+        ));
       case ErrorBaseResponse<UserEntity>():
         emit(state.copyWith(
-            userState: state.userState
-                .copyWith(errMsg: response.errorMsg, isLoading: false)));
-        print(response.errorMsg);
+          userState: BaseState(
+            errMsg: response.errorMsg,
+            isLoading: false,
+          ),
+        ));
     }
   }
 }
