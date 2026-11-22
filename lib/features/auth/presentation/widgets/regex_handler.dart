@@ -15,7 +15,7 @@ class RegexHandler {
 
   static String? validateEmail(String? value) {
     if (value == null || value.trim().isEmpty) {
-      return 'Please enter your email';
+      return UiStrings.PleaseEnterYourEmail;
     }
     if (!_emailRegex.hasMatch(value.trim())) {
       return UiStrings.ThisEmailIsNotValid;
@@ -25,7 +25,7 @@ class RegexHandler {
 
   static String? validatePassword(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Please enter your password';
+      return UiStrings.PleaseEnterYourPassword;
     }
     if (value.length < 6 || !_passwordRegex.hasMatch(value)) {
       return UiStrings.PasswordMust;
@@ -35,7 +35,7 @@ class RegexHandler {
 
   static String? validateConfirmPassword(String? value, String password) {
     if (value == null || value.isEmpty) {
-      return 'Please confirm your password';
+      return UiStrings.PleaseConfirmYourPassword;
     }
     if (value != password) {
       return UiStrings.PasswordNotMatched;
@@ -45,27 +45,30 @@ class RegexHandler {
 
   static String? validateUsername(String? value) {
     if (value == null || value.trim().isEmpty) {
-      return 'Please enter your username';
+      return UiStrings.PleaseEnterYourUsername;
     }
     if (value.trim().length < 3) {
-      return 'Username must be at least 3 characters';
+      return UiStrings.UsernameMinLength;
     }
     return null;
   }
 
   static String? validateName(String? value, String fieldName) {
     if (value == null || value.trim().isEmpty) {
-      return 'Please enter your $fieldName';
+      if (fieldName == 'first name') {
+        return UiStrings.PleaseEnterFirstName;
+      }
+      return UiStrings.PleaseEnterLastName;
     }
     return null;
   }
 
   static String? validatePhone(String? value) {
     if (value == null || value.trim().isEmpty) {
-      return 'Please enter your phone number';
+      return UiStrings.PleaseEnterYourPhoneNumber;
     }
     if (!_phoneRegex.hasMatch(value.trim())) {
-      return 'Please enter a valid phone number';
+      return UiStrings.InvalidPhoneNumber;
     }
     return null;
   }

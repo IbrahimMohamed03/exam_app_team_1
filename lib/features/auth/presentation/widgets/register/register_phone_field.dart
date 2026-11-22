@@ -1,4 +1,3 @@
-
 import 'package:exam_app_team_1/core/constants/ui_strings.dart';
 import 'package:exam_app_team_1/features/auth/presentation/widgets/regex_handler.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +18,7 @@ class RegisterPhoneField extends StatelessWidget {
       validator: RegexHandler.validatePhone,
       decoration: const InputDecoration(
         labelText: UiStrings.PhoneNumber,
-        hintText: 'Enter your phone number',
+        hintText: UiStrings.EnterYourPhoneNumber,
       ),
     );
   }
