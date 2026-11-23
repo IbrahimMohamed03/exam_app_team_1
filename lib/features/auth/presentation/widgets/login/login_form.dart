@@ -21,7 +21,7 @@ class _LoginFormState extends State<LoginForm> {
   final TextEditingController loginPasswordController = TextEditingController();
 
   bool rememberMe = false;
-  bool isPasswordObscured = true;
+  AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
 
   @override
   void dispose() {
@@ -38,12 +38,12 @@ class _LoginFormState extends State<LoginForm> {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Form(
         key: _formKey,
+        autovalidateMode: _autovalidateMode,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             SizedBox(height: context.screenHeight * 0.025),
 
-            // Back button and title
             Row(
               children: [
                 const SizedBox(width: 12),
@@ -56,7 +56,6 @@ class _LoginFormState extends State<LoginForm> {
 
             SizedBox(height: context.screenHeight * 0.025),
 
-            // Email
             TextFormField(
               controller: loginEmailController,
               keyboardType: TextInputType.emailAddress,
@@ -70,20 +69,41 @@ class _LoginFormState extends State<LoginForm> {
             SizedBox(height: context.screenHeight * 0.025),
             LoginPasswordField(controller: loginPasswordController),
             SizedBox(height: context.screenHeight * 0.015),
-            // Remember me and Forgot password
-            LoginOptionsRow(rememberMe: rememberMe, onRememberMeChanged: (val){
-              setState(() {
-                rememberMe = val;
-              });
-            }),
+
+            LoginOptionsRow(
+              rememberMe: rememberMe,
+              onRememberMeChanged: (val) {
+                setState(() {
+                  rememberMe = val;
+                });
+              },
+            ),
+
             SizedBox(height: context.screenHeight * 0.075),
-            LoginBlocBuilder(loginPasswordController: loginPasswordController,loginEmailController: loginEmailController, formKey: _formKey,rememberMe: rememberMe,),
+
+            LoginBlocBuilder(
+              loginPasswordController: loginPasswordController,
+              loginEmailController: loginEmailController,
+              formKey: _formKey,
+              rememberMe: rememberMe,
+              onFailedSubmit: () {
+                if (_autovalidateMode != AutovalidateMode.onUserInteraction) {
+                  setState(() {
+                    _autovalidateMode = AutovalidateMode.onUserInteraction;
+                  });
+                }
+              },
+            ),
+
             SizedBox(height: context.screenHeight * 0.02),
-            // Sign up link
+
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                 Text(UiStrings.DontHaveAnAccount,style: theme.textTheme.headlineSmall,),
+                Text(
+                  UiStrings.DontHaveAnAccount,
+                  style: theme.textTheme.headlineSmall,
+                ),
                 GestureDetector(
                   onTap: () {
                     context.push(Routes.register);
@@ -99,6 +119,7 @@ class _LoginFormState extends State<LoginForm> {
                 ),
               ],
             ),
+
             SizedBox(height: context.screenHeight * 0.025),
           ],
         ),

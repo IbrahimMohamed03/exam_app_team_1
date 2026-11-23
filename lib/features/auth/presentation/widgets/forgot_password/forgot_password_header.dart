@@ -1,6 +1,7 @@
 
 import 'package:exam_app_team_1/core/constants/app_colors.dart';
 import 'package:exam_app_team_1/core/constants/media_query.dart';
+import 'package:exam_app_team_1/core/constants/ui_strings.dart';
 import 'package:flutter/material.dart';
 
 class ForgotPasswordHeader extends StatelessWidget {
@@ -27,7 +28,7 @@ class ForgotPasswordHeader extends StatelessWidget {
                 ),
                 const SizedBox(width: 4),
                 Text(
-                  'Password',
+                  UiStrings.password,
                   style: TextStyle(
                     color: AppColors.appBarTitle,
                     fontWeight: FontWeight.w500,

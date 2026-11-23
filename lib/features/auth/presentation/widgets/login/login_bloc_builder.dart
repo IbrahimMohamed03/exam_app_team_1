@@ -7,17 +7,26 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../cubit/auth/auth_cubit.dart';
 
 class LoginBlocBuilder extends StatelessWidget {
-  LoginBlocBuilder({super.key, required this.loginEmailController, required this.loginPasswordController, required this.formKey, required this.rememberMe});
+  const LoginBlocBuilder({
+    super.key,
+    required this.loginEmailController,
+    required this.loginPasswordController,
+    required this.formKey,
+    required this.rememberMe,
+    this.onFailedSubmit,
+  });
+
   final GlobalKey<FormState> formKey;
-  final TextEditingController loginEmailController ;
+  final TextEditingController loginEmailController;
   final TextEditingController loginPasswordController;
   final bool rememberMe;
+  final VoidCallback? onFailedSubmit;
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AuthCubit, AuthState>(
       builder: (context, state) {
-        final isLoading = state.userState?.isLoading ?? false;
+        final isLoading = state.userState.isLoading;
 
         return SizedBox(
           height: 48,
@@ -36,20 +45,20 @@ class LoginBlocBuilder extends StatelessWidget {
             },
             child: isLoading
                 ? const SizedBox(
-              height: 22,
-              width: 22,
-              child: CircularProgressIndicator(
-                strokeWidth: 2,
-                color: Colors.white,
-              ),
-            )
+                    height: 22,
+                    width: 22,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      color: Colors.white,
+                    ),
+                  )
                 : const Text(
-              UiStrings.Login,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+                    UiStrings.Login,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
           ),
         );
       },

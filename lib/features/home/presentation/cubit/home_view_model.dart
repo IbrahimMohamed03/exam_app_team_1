@@ -34,5 +34,4 @@ Future<void> _getSubjects()async{
   }
 
 }
-
 }

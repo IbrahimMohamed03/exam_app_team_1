@@ -16,12 +16,14 @@ class LoginScreen extends StatelessWidget {
       listener: (context, state) {
         final userState = state.userState;
 
-        if (userState?.data != null) {
+        if (userState.data != null) {
           context.go(Routes.homeScreen);
-        } else if (userState?.errMsg != null) {
-          ScaffoldMessenger.of(context).showSnackBar(
+        } else if (userState.errMsg != null) {
+          final messenger = ScaffoldMessenger.of(context);
+          messenger.clearSnackBars();
+          messenger.showSnackBar(
             SnackBar(
-              content: Text(userState!.errMsg!),
+              content: Text(userState.errMsg!),
               backgroundColor: Colors.red,
             ),
           );

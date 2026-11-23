@@ -2,6 +2,7 @@
 import 'package:exam_app_team_1/config/routing/routes.dart';
 import 'package:exam_app_team_1/core/constants/app_colors.dart';
 import 'package:exam_app_team_1/core/constants/media_query.dart';
+import 'package:exam_app_team_1/core/constants/ui_strings.dart';
 import 'package:exam_app_team_1/features/auth/presentation/cubit/forgot_password/forgot_password_cubit.dart';
 import 'package:exam_app_team_1/features/auth/presentation/cubit/forgot_password/forgot_password_events.dart';
 import 'package:exam_app_team_1/features/auth/presentation/cubit/forgot_password/forgot_password_state.dart';
@@ -104,7 +105,7 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
             } else if (s?.data != null) {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
-                  content: Text('Verification code resent!'),
+                  content: Text(UiStrings.VerificationCodeResent),
                 ),
               );
             }
