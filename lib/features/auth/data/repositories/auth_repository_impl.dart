@@ -29,6 +29,7 @@ class AuthRepositoryImpl implements AuthRepository {
     return LoginRequest(email: params.email, password: params.password);
   }
 
+
   RegisterRequest RegisterParamsToRequest(RegisterParams params) {
     return RegisterRequest(
       username: params.username,
