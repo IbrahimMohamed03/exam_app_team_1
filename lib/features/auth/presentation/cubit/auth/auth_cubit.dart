@@ -34,6 +34,7 @@ class AuthCubit extends Cubit<AuthState> {
         await _register(event.params);
         return;
 
+
       case LogoutEvent():
         return;
     }
