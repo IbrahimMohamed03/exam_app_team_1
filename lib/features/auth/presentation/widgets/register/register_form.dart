@@ -79,61 +79,68 @@ class _RegisterFormState extends State<RegisterForm> {
         ),
       );
     }
-  }
+    else {
+      if (_autovalidateMode != AutovalidateMode.onUserInteraction) {
+        setState(() {
+          _autovalidateMode = AutovalidateMode.onUserInteraction;
+        });
+      }
+    }}
 
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Form(
-        key: _formKey,
-        autovalidateMode: _autovalidateMode,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            SizedBox(height: context.screenHeight * 0.025),
-            const RegisterHeader(),
-            SizedBox(height: context.screenHeight * 0.025),
-            RegisterUsernameField(
-              controller: _usernameController,
-            ),
-            SizedBox(height: context.screenHeight * 0.02),
-            RegisterNameFields(
-              firstNameController: _firstNameController,
-              lastNameController: _lastNameController,
-            ),
-            SizedBox(height: context.screenHeight * 0.02),
-            RegisterEmailField(
-              controller: _emailController,
-            ),
-            SizedBox(height: context.screenHeight * 0.02),
-            RegisterPasswordField(
-              controller: _passwordController,
-              label: UiStrings.Password,
-            ),
-            SizedBox(height: context.screenHeight * 0.02),
-            RegisterPasswordField(
-              controller: _rePasswordController,
-              label: UiStrings.ConfirmPassword,
-              validator: (value) => RegexHandler.validateConfirmPassword(
-                value,
-                _passwordController.text,
+    @override
+    Widget build(BuildContext context) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Form(
+          key: _formKey,
+          autovalidateMode: _autovalidateMode,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              SizedBox(height: context.screenHeight * 0.025),
+              const RegisterHeader(),
+              SizedBox(height: context.screenHeight * 0.025),
+              RegisterUsernameField(
+                controller: _usernameController,
               ),
-            ),
-            SizedBox(height: context.screenHeight * 0.02),
-            RegisterPhoneField(
-              controller: _phoneController,
-            ),
-            SizedBox(height: context.screenHeight * 0.04),
-            RegisterSubmitButton(
-              onPressed: _onRegister,
-            ),
-            SizedBox(height: context.screenHeight * 0.02),
-            const RegisterLoginLink(),
-            SizedBox(height: context.screenHeight * 0.025),
-          ],
+              SizedBox(height: context.screenHeight * 0.02),
+              RegisterNameFields(
+                firstNameController: _firstNameController,
+                lastNameController: _lastNameController,
+              ),
+              SizedBox(height: context.screenHeight * 0.02),
+              RegisterEmailField(
+                controller: _emailController,
+              ),
+              SizedBox(height: context.screenHeight * 0.02),
+              RegisterPasswordField(
+                controller: _passwordController,
+                label: UiStrings.Password,
+              ),
+              SizedBox(height: context.screenHeight * 0.02),
+              RegisterPasswordField(
+                controller: _rePasswordController,
+                label: UiStrings.ConfirmPassword,
+                validator: (value) =>
+                    RegexHandler.validateConfirmPassword(
+                      value,
+                      _passwordController.text,
+                    ),
+              ),
+              SizedBox(height: context.screenHeight * 0.02),
+              RegisterPhoneField(
+                controller: _phoneController,
+              ),
+              SizedBox(height: context.screenHeight * 0.04),
+              RegisterSubmitButton(
+                onPressed: _onRegister,
+              ),
+              SizedBox(height: context.screenHeight * 0.02),
+              const RegisterLoginLink(),
+              SizedBox(height: context.screenHeight * 0.025),
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    }
   }
-}

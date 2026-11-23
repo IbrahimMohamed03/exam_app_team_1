@@ -42,6 +42,9 @@ class LoginBlocBuilder extends StatelessWidget {
                   ),
                 );
               }
+              else {
+                onFailedSubmit?.call();
+              }
             },
             child: isLoading
                 ? const SizedBox(
