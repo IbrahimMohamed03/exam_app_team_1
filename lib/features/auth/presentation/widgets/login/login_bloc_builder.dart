@@ -1,4 +1,5 @@
 import 'package:exam_app_team_1/core/constants/ui_strings.dart';
+import 'package:exam_app_team_1/features/auth/domain/params/login_params.dart';
 import 'package:exam_app_team_1/features/auth/presentation/cubit/auth/auth_events.dart';
 import 'package:exam_app_team_1/features/auth/presentation/cubit/auth/auth_state.dart';
 import 'package:flutter/material.dart';
@@ -28,9 +29,7 @@ class LoginBlocBuilder extends StatelessWidget {
               if (formKey.currentState?.validate() ?? false) {
                 context.read<AuthCubit>().onEvent(
                   LoginEvent(
-                    email: loginEmailController.text.trim(),
-                    password: loginPasswordController.text,
-                    rememberMe: rememberMe,
+                    params: LoginParams(email: loginEmailController.text.trim(), password: loginPasswordController.text, rememberMe: rememberMe,)
                   ),
                 );
               }

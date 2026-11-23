@@ -12,8 +12,8 @@ import 'package:injectable/injectable.dart';
 
 @Injectable()
 class AuthCubit extends Cubit<AuthState> {
-  LoginUsecase loginUsecase;
-  RegisterUsecase registerUsecase;
+  final LoginUsecase loginUsecase;
+  final RegisterUsecase registerUsecase;
 
   TextEditingController registerEmailController = TextEditingController();
   TextEditingController registerPasswordController = TextEditingController();
@@ -24,48 +24,27 @@ class AuthCubit extends Cubit<AuthState> {
 
   AuthCubit(this.loginUsecase, this.registerUsecase) : super(AuthState());
 
-  void onEvent(AuthEvents event) async {
+  Future<void> onEvent(AuthEvents event) async {
     switch (event) {
-      case LoginEvent(:final email, :final password, :final rememberMe):
-        _login(email, password, rememberMe);
+      case LoginEvent():
+        await _login(event.params);
         return;
-      case RegisterEvent(
-          :final email,
-          :final password,
-          :final username,
-          :final phone,
-          :final firstName,
-          :final lastName,
-          :final rePassword,
-      ):
-        await _register(
-          email,
-          password,
-          username,
-          phone,
-          firstName,
-          lastName,
-          rePassword,
-        );
-        return;
-      case LogoutEvent():
 
+      case RegisterEvent():
+        await _register(event.params);
+        return;
+
+      case LogoutEvent():
+        return;
     }
   }
 
-  void getData() async {}
-
-  Future<void> _login(String email, String password, bool rememberMe) async {
-    final request = LoginParams(
-      email: email,
-      password: password,
-      rememberMe: rememberMe,
-    );
+  Future<void> _login(LoginParams params) async {
 
     emit(state.copyWith(
         userState: state.userState.copyWith(isLoading: true, errMsg: null)));
 
-    BaseResponse<UserEntity>? response = await loginUsecase(request);
+    BaseResponse<UserEntity>? response = await loginUsecase(params);
     switch (response) {
       case SuccessBaseResponse<UserEntity>():
         emit(state.copyWith(
@@ -81,20 +60,11 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  Future<void> _register(String email, String password, String username,
-      String phone, String firstName, String lastName, String rePassword) async {
-    final request = RegisterParams(
-        email: email,
-        password: password,
-        username: username,
-        phone: phone,
-        firstName: firstName,
-        lastName: lastName,
-        rePassword: rePassword);
-    emit(state.copyWith(
-        userState: state.userState.copyWith(isLoading: true, errMsg: null)));
+  Future<void> _register(RegisterParams params) async {
 
-    BaseResponse<UserEntity>? response = await registerUsecase(request);
+    emit(state.copyWith(userState: state.userState.copyWith(isLoading: true, errMsg: null)));
+
+    BaseResponse<UserEntity>? response = await registerUsecase(params);
     switch (response) {
       case SuccessBaseResponse<UserEntity>():
         emit(state.copyWith(

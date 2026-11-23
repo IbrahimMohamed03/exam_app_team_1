@@ -1,4 +1,5 @@
 import 'package:exam_app_team_1/core/constants/ui_strings.dart';
+import 'package:exam_app_team_1/features/auth/domain/params/register_params.dart';
 import 'package:exam_app_team_1/features/auth/presentation/widgets/regex_handler.dart';
 import 'package:exam_app_team_1/core/constants/media_query.dart';
 import 'package:exam_app_team_1/features/auth/presentation/cubit/auth/auth_cubit.dart';
@@ -56,13 +57,15 @@ class _RegisterFormState extends State<RegisterForm> {
     if (_formKey.currentState?.validate() ?? false) {
       context.read<AuthCubit>().onEvent(
         RegisterEvent(
-          email: _emailController.text.trim(),
-          password: _passwordController.text,
-          username: _usernameController.text.trim(),
-          phone: _phoneController.text.trim(),
-          firstName: _firstNameController.text.trim(),
-          lastName: _lastNameController.text.trim(),
-          rePassword: _rePasswordController.text,
+          params: RegisterParams(
+            email: _emailController.text.trim(),
+            password: _passwordController.text,
+            username: _usernameController.text.trim(),
+            phone: _phoneController.text.trim(),
+            firstName: _firstNameController.text.trim(),
+            lastName: _lastNameController.text.trim(),
+            rePassword: _rePasswordController.text,
+          ),
         ),
       );
     }

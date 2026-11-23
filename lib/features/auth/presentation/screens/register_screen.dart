@@ -16,14 +16,7 @@ class RegisterScreen extends StatelessWidget {
         final userState = state.userState;
 
         if (userState?.data != null) {
-          final messenger = ScaffoldMessenger.of(context);
-          messenger.clearSnackBars();
-          messenger.showSnackBar(
-            SnackBar(
-              content: Text(userState!.errMsg!),
-              backgroundColor: Colors.red,
-            ),
-          );
+
           context.go(Routes.login);
         } else if (userState?.errMsg != null) {
           ScaffoldMessenger.of(context).showSnackBar(
