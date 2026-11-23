@@ -1,4 +1,5 @@
 import 'package:exam_app_team_1/config/base_response/base_rsponse.dart';
+import 'package:exam_app_team_1/core/utils/safe_call.dart';
 import 'package:exam_app_team_1/features/auth/api/api_clients/auth_api_client.dart';
 import 'package:exam_app_team_1/features/auth/data/models/login_request.dart';
 import 'package:exam_app_team_1/features/auth/data/models/register_request.dart';
@@ -17,56 +18,31 @@ class AuthDataSourceImp implements AuthDataSource {
   AuthDataSourceImp(this.authApiClient);
 
   @override
-  Future<BaseResponse<AuthResponse>> login(LoginRequest request) async {
-    try {
-      final response = await authApiClient.login(request);
-      return SuccessBaseResponse(response);
-    } catch (e) {
-      return ErrorBaseResponse(errorObj: e);
-    }
+  Future<BaseResponse<AuthResponse>> login(LoginRequest request) {
+    return safeCall(() => authApiClient.login(request));
   }
 
   @override
-  Future<BaseResponse<AuthResponse>> register(RegisterRequest request) async {
-    try {
-      final response = await authApiClient.register(request);
-      return SuccessBaseResponse(response);
-    } catch (e) {
-      return ErrorBaseResponse(errorObj: e);
-    }
+  Future<BaseResponse<AuthResponse>> register(RegisterRequest request) {
+    return safeCall(() => authApiClient.register(request));
   }
 
   @override
   Future<BaseResponse<ForgetPasswordResponse>> forgotPassword(
-      ForgotPasswordRequest request) async {
-    try {
-      final response = await authApiClient.forgotPassword(request);
-      return SuccessBaseResponse(response);
-    } catch (e) {
-      return ErrorBaseResponse(errorObj: e);
-    }
+      ForgotPasswordRequest request) {
+    return safeCall(() => authApiClient.forgotPassword(request));
   }
 
   @override
   Future<BaseResponse<ForgetPasswordResponse>> verifyResetCode(
-      VerifyResetCodeRequest request) async {
-    try {
-      final response = await authApiClient.verifyResetCode(request);
-      return SuccessBaseResponse(response);
-    } catch (e) {
-      return ErrorBaseResponse(errorObj: e);
-    }
+      VerifyResetCodeRequest request) {
+    return safeCall(() => authApiClient.verifyResetCode(request));
   }
 
   @override
   Future<BaseResponse<ForgetPasswordResponse>> resetPassword(
-      ResetPasswordRequest request) async {
-    try {
-      final response = await authApiClient.resetPassword(request);
-      return SuccessBaseResponse(response);
-    } catch (e) {
-      return ErrorBaseResponse(errorObj: e);
-    }
+      ResetPasswordRequest request) {
+    return safeCall(() => authApiClient.resetPassword(request));
   }
 
   @override
