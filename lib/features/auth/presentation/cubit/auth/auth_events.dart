@@ -1,35 +1,18 @@
+import 'package:exam_app_team_1/features/auth/domain/params/login_params.dart';
+import 'package:exam_app_team_1/features/auth/domain/params/register_params.dart';
+
 sealed class AuthEvents {}
 
 final class LoginEvent extends AuthEvents {
-  final String email;
-  final String password;
-  final bool rememberMe;
+  final LoginParams params;
 
-  LoginEvent({
-    required this.email,
-    required this.password,
-    this.rememberMe = false,
-  });
+  LoginEvent({required this.params});
 }
 
 final class RegisterEvent extends AuthEvents {
-  final String email;
-  final String password;
-  final String username;
-  final String phone;
-  final String firstName;
-  final String lastName;
-  final String rePassword;
+  final RegisterParams params;
 
-  RegisterEvent({
-    required this.email,
-    required this.password,
-    required this.username,
-    required this.phone,
-    required this.firstName,
-    required this.lastName,
-    required this.rePassword,
-  });
+  RegisterEvent({required this.params});
 }
 
 final class LogoutEvent extends AuthEvents {}
