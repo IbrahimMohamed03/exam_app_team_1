@@ -1,6 +1,6 @@
 
 import 'package:exam_app_team_1/config/base_response/base_rsponse.dart';
-import 'package:exam_app_team_1/features/home/subject/domain/entities/subject_entity.dart';
+import 'package:exam_app_team_1/config/entities/subject_entity.dart';
 import 'package:exam_app_team_1/features/home/subject/domain/repositories/home_repository.dart';
 import 'package:injectable/injectable.dart';
 

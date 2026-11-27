@@ -41,20 +41,26 @@ import '../../features/home/subject/api/api_clients/home_api_client.dart'
     as _i943;
 import '../../features/home/subject/api/data_sources/home_data_source_impl.dart'
     as _i885;
-import '../../features/home/subject/data/datasources/remote/home_data_source.dart'
-    as _i1036;
+import '../../features/home/subject/data/datasources/home_data_source.dart'
+    as _i729;
 import '../../features/home/subject/data/repositories/home_repository_impl.dart'
     as _i429;
 import '../../features/home/subject/domain/repositories/home_repository.dart'
     as _i1007;
-import '../../features/home/subject/domain/usecases/get_one_subject_usecase.dart'
-    as _i953;
 import '../../features/home/subject/domain/usecases/get_subjects_usecase.dart'
     as _i128;
 import '../../features/home/subject/presentation/cubit/home_view_model.dart'
     as _i481;
 import '../../features/home/subject_exams/api/api_clients/subject_exams_api_client.dart'
     as _i884;
+import '../../features/home/subject_exams/data/data_sources/subject_exams_data_source.dart'
+    as _i852;
+import '../../features/home/subject_exams/data/repositories/subject_exams_repository_imp.dart'
+    as _i516;
+import '../../features/home/subject_exams/domain/repositories/subject_exams_repository.dart'
+    as _i171;
+import '../../features/home/subject_exams/domain/usecases/get_one_subject_usecase.dart'
+    as _i437;
 import '../dio/auth_interceptor.dart' as _i839;
 import '../dio/dio.dart' as _i889;
 
@@ -70,6 +76,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i839.AuthInterceptor>(
       () => _i839.AuthInterceptor(gh<_i1001.TokenStorage>()),
     );
+    gh.lazySingleton<_i171.SubjectExamsRepository>(
+      () => _i516.SubjectExamsRepositoryImp(gh<_i852.SubjectExamsDataSource>()),
+    );
+    gh.lazySingleton<_i437.GetOneSubjectUsecase>(
+      () => _i437.GetOneSubjectUsecase(gh<_i171.SubjectExamsRepository>()),
+    );
     gh.singleton<_i361.Dio>(() => dioModule.dio(gh<_i839.AuthInterceptor>()));
     gh.lazySingleton<_i775.AuthApiClient>(
       () => _i775.AuthApiClient(gh<_i361.Dio>()),
@@ -80,20 +92,20 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i884.SubjectExamsApiClient>(
       () => _i884.SubjectExamsApiClient(gh<_i361.Dio>()),
     );
-    gh.lazySingleton<_i1036.HomeDataSource>(
+    gh.lazySingleton<_i729.HomeDataSource>(
       () => _i885.HomeDataSourceImp(gh<_i943.HomeApiClient>()),
     );
     gh.lazySingleton<_i933.AuthDataSource>(
       () => _i139.AuthDataSourceImp(gh<_i775.AuthApiClient>()),
-    );
-    gh.lazySingleton<_i1007.HomeRepository>(
-      () => _i429.HomeRepositoryImpl(gh<_i1036.HomeDataSource>()),
     );
     gh.lazySingleton<_i787.AuthRepository>(
       () => _i153.AuthRepositoryImpl(
         gh<_i933.AuthDataSource>(),
         gh<_i1001.TokenStorage>(),
       ),
+    );
+    gh.lazySingleton<_i1007.HomeRepository>(
+      () => _i429.HomeRepositoryImpl(gh<_i729.HomeDataSource>()),
     );
     gh.lazySingleton<_i724.CheckLoginStatusUsecase>(
       () => _i724.CheckLoginStatusUsecase(gh<_i787.AuthRepository>()),
@@ -125,9 +137,6 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i694.VerifyResetCodeUsecase>(),
         gh<_i474.ResetPasswordUsecase>(),
       ),
-    );
-    gh.lazySingleton<_i953.GetOneSubjectUsecase>(
-      () => _i953.GetOneSubjectUsecase(gh<_i1007.HomeRepository>()),
     );
     gh.lazySingleton<_i128.GetSubjectsUsecase>(
       () => _i128.GetSubjectsUsecase(gh<_i1007.HomeRepository>()),

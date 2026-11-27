@@ -1,4 +1,4 @@
-import 'package:exam_app_team_1/features/home/subject/domain/entities/subject_entity.dart';
+import 'package:exam_app_team_1/config/entities/subject_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'subject.freezed.dart';

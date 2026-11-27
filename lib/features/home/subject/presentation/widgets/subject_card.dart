@@ -1,6 +1,6 @@
 
 import 'package:exam_app_team_1/core/constants/app_colors.dart';
-import 'package:exam_app_team_1/features/home/subject/domain/entities/subject_entity.dart';
+import 'package:exam_app_team_1/config/entities/subject_entity.dart';
 import 'package:flutter/material.dart';
 
 class SubjectCard extends StatelessWidget {

@@ -1,7 +1,7 @@
 
 import 'package:bloc/bloc.dart';
 import 'package:exam_app_team_1/config/base_response/base_rsponse.dart';
-import 'package:exam_app_team_1/features/home/subject/domain/entities/subject_entity.dart';
+import 'package:exam_app_team_1/config/entities/subject_entity.dart';
 import 'package:exam_app_team_1/features/home/subject/domain/usecases/get_subjects_usecase.dart';
 import 'package:exam_app_team_1/features/home/subject/presentation/cubit/home_events.dart';
 import 'package:exam_app_team_1/features/home/subject/presentation/cubit/home_state.dart';

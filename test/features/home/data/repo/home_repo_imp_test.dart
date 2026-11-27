@@ -1,10 +1,10 @@
 import 'package:exam_app_team_1/config/base_response/base_rsponse.dart';
+import 'package:exam_app_team_1/config/entities/subject_entity.dart';
 import 'package:exam_app_team_1/config/models/metadata_model.dart';
-import 'package:exam_app_team_1/features/home/subjects/api/datasources/home_data_source_impl.dart';
-import 'package:exam_app_team_1/features/home/subjects/data/models/responses/subject_response.dart';
-import 'package:exam_app_team_1/features/home/subjects/data/models/subject.dart';
-import 'package:exam_app_team_1/features/home/subjects/data/repositories/home_repository_impl.dart';
-import 'package:exam_app_team_1/features/home/subjects/domain/entities/subject_entity.dart';
+import 'package:exam_app_team_1/features/home/subject/api/data_sources/home_data_source_impl.dart';
+import 'package:exam_app_team_1/features/home/subject/data/models/responses/subject_response.dart';
+import 'package:exam_app_team_1/features/home/subject/data/repositories/home_repository_impl.dart';
+import 'package:exam_app_team_1/features/home/subject_exams/data/models/subject.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';

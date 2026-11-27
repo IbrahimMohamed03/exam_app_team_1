@@ -1,10 +1,10 @@
 
 import 'package:exam_app_team_1/config/base_response/base_rsponse.dart';
-import 'package:exam_app_team_1/features/home/subject/data/datasources/remote/home_data_source.dart';
-import 'package:exam_app_team_1/features/home/subject/data/models/responses/one_subject_response.dart';
+import 'package:exam_app_team_1/features/home/subject/data/datasources/home_data_source.dart';
+import 'package:exam_app_team_1/features/home/subject_exams/data/models/responses/one_subject_response.dart';
 import 'package:exam_app_team_1/features/home/subject/data/models/responses/subject_response.dart';
 import 'package:exam_app_team_1/features/home/subject_exams/data/models/subject.dart';
-import 'package:exam_app_team_1/features/home/subject/domain/entities/subject_entity.dart';
+import 'package:exam_app_team_1/config/entities/subject_entity.dart';
 import 'package:exam_app_team_1/features/home/subject/domain/repositories/home_repository.dart';
 import 'package:injectable/injectable.dart';
 
@@ -29,19 +29,6 @@ class HomeRepositoryImpl implements HomeRepository{
     }
   }
 
-  @override
-  Future<BaseResponse<SubjectEntity>> getOneSubject(String subjectId)async {
-    final response = await homeDataSource.getOneSubject(subjectId);
-    switch(response){
-
-      case SuccessBaseResponse<OneSubjectResponse>():
-        final subject = response.data.category.toDomain();
-
-        return SuccessBaseResponse<SubjectEntity>(subject);
-      case ErrorBaseResponse<OneSubjectResponse>():
-        return ErrorBaseResponse<SubjectEntity>(errorObj: response.errorObj);
-
-    }
-  }
+  
 
 }
