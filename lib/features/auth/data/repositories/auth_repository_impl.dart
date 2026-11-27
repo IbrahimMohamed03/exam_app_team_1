@@ -3,7 +3,7 @@ import 'package:exam_app_team_1/features/auth/domain/params/login_params.dart';
 import 'package:exam_app_team_1/features/auth/domain/params/register_params.dart';
 import 'package:injectable/injectable.dart';
 import 'package:exam_app_team_1/config/base_response/base_rsponse.dart';
-import 'package:exam_app_team_1/features/auth/data/datasources/auth_data_source.dart';
+import 'package:exam_app_team_1/features/auth/data/data_sources/auth_data_source.dart';
 import 'package:exam_app_team_1/features/auth/data/models/auth_response.dart';
 import 'package:exam_app_team_1/features/auth/data/models/login_request.dart';
 import 'package:exam_app_team_1/features/auth/data/models/register_request.dart';
