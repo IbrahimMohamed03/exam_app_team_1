@@ -5,11 +5,6 @@
 import 'package:exam_app_team_1/core/constants/app_colors.dart';
 import 'package:exam_app_team_1/core/constants/media_query.dart';
 import 'package:exam_app_team_1/core/constants/ui_strings.dart';
-import 'package:exam_app_team_1/features/home/presentation/cubit/home_state.dart';
-import 'package:exam_app_team_1/features/home/presentation/cubit/home_view_model.dart';
-import 'package:exam_app_team_1/features/home/presentation/widgets/home_bloc_builder.dart';
-import 'package:exam_app_team_1/features/home/presentation/widgets/search_bar.dart';
-import 'package:exam_app_team_1/features/home/presentation/widgets/subject_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

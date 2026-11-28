@@ -11,9 +11,9 @@ import 'package:exam_app_team_1/features/auth/presentation/screens/reset_passwor
 import 'package:exam_app_team_1/features/auth/presentation/screens/splash_screen.dart';
 import 'package:exam_app_team_1/features/auth/presentation/screens/verification_code_screen.dart';
 import 'package:exam_app_team_1/features/fake_profile_screen.dart';
-import 'package:exam_app_team_1/features/home/presentation/cubit/home_events.dart';
-import 'package:exam_app_team_1/features/home/presentation/cubit/home_view_model.dart';
-import 'package:exam_app_team_1/features/home/presentation/screens/home_view.dart';
+import 'package:exam_app_team_1/features/home/subject/presentation/cubit/home_events.dart';
+import 'package:exam_app_team_1/features/home/subject/presentation/cubit/home_view_model.dart';
+import 'package:exam_app_team_1/features/home/subject/presentation/screens/home_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
