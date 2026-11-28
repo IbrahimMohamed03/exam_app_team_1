@@ -1,13 +1,15 @@
 
 import 'package:exam_app_team_1/config/base_state/base_state.dart';
 import 'package:exam_app_team_1/config/entities/subject_entity.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:retrofit/http.dart';
 
-class HomeState{
-  final BaseState<List<SubjectEntity>?>? subjectsState;
-  HomeState({BaseState<List<SubjectEntity>?>? subjectsState }): subjectsState=subjectsState?? BaseState<List<SubjectEntity>?>();
-  HomeState copyWith({BaseState<List<SubjectEntity>?>? subjectsState}){
-    return HomeState(
-      subjectsState: subjectsState?? this.subjectsState
-    );
-  }
+part'home_state.freezed.dart';
+
+@freezed
+abstract class HomeState with _$HomeState{
+ factory HomeState({
+  @Default(BaseState<List<SubjectEntity>>() )
+  BaseState<List<SubjectEntity>> subjectsState
+ })=_HomeState;
 }

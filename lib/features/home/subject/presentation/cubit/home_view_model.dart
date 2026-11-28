@@ -22,14 +22,14 @@ switch(event){
 }
 
 Future<void> _getSubjects()async{
-  emit(state.copyWith(subjectsState: state.subjectsState?.copyWith(isLoading: true,errMsg: null)));
+  emit(state.copyWith(subjectsState: state.subjectsState.copyWith(isLoading: true,errMsg: null)));
   BaseResponse<List<SubjectEntity>?> response = await _getSubjectsUsecase();
   switch(response){
 
     case SuccessBaseResponse<List<SubjectEntity>?>():
-      emit(state.copyWith(subjectsState: state.subjectsState?.copyWith(data: response.data,errMsg: null,isLoading: false)));
+      emit(state.copyWith(subjectsState: state.subjectsState.copyWith(data: response.data,errMsg: null,isLoading: false)));
     case ErrorBaseResponse<List<SubjectEntity>?>():
-      emit(state.copyWith(subjectsState: state.subjectsState?.copyWith(errMsg: response.errorMsg,isLoading: false)));
+      emit(state.copyWith(subjectsState: state.subjectsState.copyWith(errMsg: response.errorMsg,isLoading: false)));
 
   }
 
